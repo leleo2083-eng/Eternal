@@ -181,7 +181,7 @@ local celinaHUB = (function()
 
 	local function _renderYield()
 	end
-	local CELINA_ = {
+	local Eternal = {
 		Version = "x.x",
 		Logo = "https://i.ibb.co/bjLdp5Yq/avatar-1200x1200.jpg",
 		Windows = {},
@@ -201,7 +201,7 @@ local celinaHUB = (function()
 		end,
 	}
 
-	CELINA_.Colors = {
+	Eternal.Colors = {
 		Highlight = Color3.fromRGB(17, 238, 253),
 		Toggle = Color3.fromRGB(14, 203, 213),
 		Risky = Color3.fromRGB(251, 255, 39),
@@ -216,7 +216,7 @@ local celinaHUB = (function()
 		HighStrokeColor = Color3.fromRGB(55, 56, 63),
 	}
 
-	CELINA_.Elements = {
+	Eternal.Elements = {
 		Highlight = {},
 		DropHighlight = {},
 		Risky = {},
@@ -230,16 +230,16 @@ local celinaHUB = (function()
 		HighStrokeColor = {},
 		Toggle = {},
 	}
-	CELINA_._sectionPills = {}
-	CELINA_._configDelButtons = {}
+	Eternal._sectionPills = {}
+	Eternal._configDelButtons = {}
 
-	CELINA_.DragBlacklist = {}
-	CELINA_.IaDrag = false
-	CELINA_.LastDrag = tick()
-	CELINA_.Flags = {}
-	CELINA_._KeybindRegistry = {}
+	Eternal.DragBlacklist = {}
+	Eternal.IaDrag = false
+	Eternal.LastDrag = tick()
+	Eternal.Flags = {}
+	Eternal._KeybindRegistry = {}
 
-	CELINA_.Lucide = {
+	Eternal.Lucide = {
 		["lucide-mouse-2"] = "rbxassetid://10088146939",
 		["lucide-internet"] = "rbxassetid://12785195438",
 		["lucide-earth"] = "rbxassetid://115986292591138",
@@ -1064,7 +1064,7 @@ local celinaHUB = (function()
 		["lucide-zoom-out"] = "rbxassetid://10747384679",
 	}
 
-	CELINA_.FontAwesome = {
+	Eternal.FontAwesome = {
 		a = "rbxassetid://74244459944328",
 		["accessible-icon"] = "rbxassetid://135242143909610",
 		accusoft = "rbxassetid://94057545767519",
@@ -1252,36 +1252,36 @@ local celinaHUB = (function()
 		["magnifying-glass"] = "rbxassetid://74387839235930",
 	}
 
-	function CELINA_:OptimizeMode(v)
-		CELINA_.PerformanceMode = v
+	function Eternal:OptimizeMode(v)
+		Eternal.PerformanceMode = v
 	end
 
-	function CELINA_:IsStudio()
+	function Eternal:IsStudio()
 		return RunService:IsStudio()
 	end
 
-	function CELINA_:CustomIconHighlight()
-		CELINA_.CustomHighlightMode = true
+	function Eternal:CustomIconHighlight()
+		Eternal.CustomHighlightMode = true
 	end
 
-	function CELINA_:_SetNilP(Ins, Parent)
-		CELINA_.WindowsNil = CELINA_.WindowsNil or {}
-		CELINA_.NilFolder = CELINA_.NilFolder or Instance.new("Folder")
+	function Eternal:_SetNilP(Ins, Parent)
+		Eternal.WindowsNil = Eternal.WindowsNil or {}
+		Eternal.NilFolder = Eternal.NilFolder or Instance.new("Folder")
 
-		if not CELINA_.WindowsNil[Ins] then
-			local win = CELINA_:_GetWindowFromElement(Ins)
+		if not Eternal.WindowsNil[Ins] then
+			local win = Eternal:_GetWindowFromElement(Ins)
 
-			CELINA_.WindowsNil[Ins] = win
+			Eternal.WindowsNil[Ins] = win
 		end
 
 		pcall(function()
-			Ins.Parent = Parent or CELINA_.NilFolder
+			Ins.Parent = Parent or Eternal.NilFolder
 		end)
 	end
 
-	function CELINA_:SetAllText(flags: { [string]: string })
+	function Eternal:SetAllText(flags: { [string]: string })
 		if not flags then
-			for i, v in next, CELINA_.Flags do
+			for i, v in next, Eternal.Flags do
 				if v.SetText then
 					v:SetText(nil)
 				end
@@ -1293,28 +1293,28 @@ local celinaHUB = (function()
 		flags = flags or {}
 
 		for i, v in next, flags do
-			if CELINA_.Flags[i] and CELINA_.Flags[i].SetText then
-				CELINA_.Flags[i]:SetText(v)
+			if Eternal.Flags[i] and Eternal.Flags[i].SetText then
+				Eternal.Flags[i]:SetText(v)
 			end
 		end
 	end
 
-	function CELINA_:_GetIcon(name, font_aws): string
-		if CELINA_.SecureMode then
+	function Eternal:_GetIcon(name, font_aws): string
+		if Eternal.SecureMode then
 			local AssetId
 
 			if font_aws then
-				AssetId = CELINA_.FontAwesome[name] or name
+				AssetId = Eternal.FontAwesome[name] or name
 			else
-				AssetId = CELINA_.Lucide["lucide-" .. tostring(name)]
-					or CELINA_.Lucide[name]
-					or CELINA_.Lucide[tostring(name)]
-					or CELINA_.FontAwesome[name]
+				AssetId = Eternal.Lucide["lucide-" .. tostring(name)]
+					or Eternal.Lucide[name]
+					or Eternal.Lucide[tostring(name)]
+					or Eternal.FontAwesome[name]
 					or name
 			end
 
 			if AssetId and AssetId ~= nil then
-				local asset = CELINA_:CacheImage(AssetId)
+				local asset = Eternal:CacheImage(AssetId)
 
 				return asset
 			end
@@ -1323,23 +1323,23 @@ local celinaHUB = (function()
 		end
 
 		if font_aws then
-			return CELINA_.FontAwesome[name] or name
+			return Eternal.FontAwesome[name] or name
 		end
 
-		return CELINA_.Lucide["lucide-" .. tostring(name)]
-			or CELINA_.Lucide[name]
-			or CELINA_.Lucide[tostring(name)]
-			or CELINA_.FontAwesome[name]
+		return Eternal.Lucide["lucide-" .. tostring(name)]
+			or Eternal.Lucide[name]
+			or Eternal.Lucide[tostring(name)]
+			or Eternal.FontAwesome[name]
 			or name
 	end
 
 	local _nameCounter = 0
-	function CELINA_:_RandomString(): string
+	function Eternal:_RandomString(): string
 		_nameCounter = _nameCounter + 1
 		return "CK=" .. tostring(_nameCounter)
 	end
 
-	function CELINA_:_IsMouseOverFrame(Frame): boolean
+	function Eternal:_IsMouseOverFrame(Frame): boolean
 		if not Frame then
 			return
 		end
@@ -1356,12 +1356,12 @@ local celinaHUB = (function()
 		end
 	end
 
-	function CELINA_:_Rounding(num, numDecimalPlaces): number
+	function Eternal:_Rounding(num, numDecimalPlaces): number
 		local mult = 10 ^ (numDecimalPlaces or 0)
 		return math.floor(num * mult + 0.5) / mult
 	end
 
-	function CELINA_:_Animation(Self, Info, Property: { [K]: V })
+	function Eternal:_Animation(Self, Info, Property: { [K]: V })
 		local Tween = TweenService:Create(Self, Info or _TI_025, Property)
 
 		Tween:Play()
@@ -1369,7 +1369,7 @@ local celinaHUB = (function()
 		return Tween
 	end
 
-	function CELINA_:_Input(Frame, Callback: () -> ()): TextButton
+	function Eternal:_Input(Frame, Callback: () -> ()): TextButton
 		local Button = Instance.new("TextButton")
 		Button.Parent = Frame
 
@@ -1385,7 +1385,7 @@ local celinaHUB = (function()
 		return Button
 	end
 
-	function CELINA_:GetCalculatePosition(
+	function Eternal:GetCalculatePosition(
 		planePos,
 		planeNormal,
 		rayOrigin,
@@ -1402,13 +1402,13 @@ local celinaHUB = (function()
 		return rayOrigin + (a * rayDirection)
 	end
 
-	function CELINA_:_Blur(element, WindowRemote): RBXScriptSignal
-		if CELINA_.SecureMode and not CELINA_.SecurityConfig.BlurEnabled then
+	function Eternal:_Blur(element, WindowRemote): RBXScriptSignal
+		if Eternal.SecureMode and not Eternal.SecurityConfig.BlurEnabled then
 			return game.Changed:Connect(function() end)
 		end
 
 		local Part = Instance.new("Part")
-		Part.Parent = CELINA_.ArcylicParent
+		Part.Parent = Eternal.ArcylicParent
 		local DepthOfField = Instance.new("DepthOfFieldEffect")
 		DepthOfField.Parent = cloneref(game:GetService("Lighting"))
 		local BlockMesh = Instance.new("BlockMesh")
@@ -1423,7 +1423,7 @@ local celinaHUB = (function()
 		Part.Anchored = true
 		Part.CanCollide = false
 		Part.CanQuery = false
-		Part.CollisionGroup = CELINA_:_RandomString()
+		Part.CollisionGroup = Eternal:_RandomString()
 		Part.Size = Vector3.new(1, 1, 1) * 0.01
 		Part.Color = Color3.fromRGB(0, 0, 0)
 
@@ -1432,14 +1432,14 @@ local celinaHUB = (function()
 		DepthOfField.FocusDistance = 0
 		DepthOfField.InFocusRadius = 1000
 		DepthOfField.NearIntensity = 1
-		DepthOfField.Name = CELINA_:_RandomString()
+		DepthOfField.Name = Eternal:_RandomString()
 
-		Part.Name = CELINA_:_RandomString()
+		Part.Name = Eternal:_RandomString()
 
 		local disconnect
 
 		local UpdateFunction = function()
-			if CELINA_.SecureMode then
+			if Eternal.SecureMode then
 				if Part then
 					Part:Destroy()
 					Part = nil
@@ -1466,20 +1466,20 @@ local celinaHUB = (function()
 			local IsWindowActive = WindowRemote:GetValue()
 
 			if IsWindowActive then
-				CELINA_:_Animation(DepthOfField, TweenInfo.new(0.1), {
+				Eternal:_Animation(DepthOfField, TweenInfo.new(0.1), {
 					NearIntensity = 1,
 				})
 
-				CELINA_:_Animation(Part, TweenInfo.new(0.1), {
+				Eternal:_Animation(Part, TweenInfo.new(0.1), {
 					Transparency = 0.97,
 					Size = Vector3.new(1, 1, 1) * 0.01,
 				})
 			else
-				CELINA_:_Animation(DepthOfField, TweenInfo.new(0.1), {
+				Eternal:_Animation(DepthOfField, TweenInfo.new(0.1), {
 					NearIntensity = 0,
 				})
 
-				CELINA_:_Animation(Part, TweenInfo.new(0.1), {
+				Eternal:_Animation(Part, TweenInfo.new(0.1), {
 					Size = Vector3.zero,
 					Transparency = 1.5,
 				})
@@ -1499,8 +1499,8 @@ local celinaHUB = (function()
 
 				local planeNormal = CurrentCamera.CFrame.LookVector
 
-				local pos0 = CELINA_:GetCalculatePosition(planeOrigin, planeNormal, ray0.Origin, ray0.Direction)
-				local pos1 = CELINA_:GetCalculatePosition(planeOrigin, planeNormal, ray1.Origin, ray1.Direction)
+				local pos0 = Eternal:GetCalculatePosition(planeOrigin, planeNormal, ray0.Origin, ray0.Direction)
+				local pos1 = Eternal:GetCalculatePosition(planeOrigin, planeNormal, ray1.Origin, ray1.Direction)
 
 				pos0 = CurrentCamera.CFrame:PointToObjectSpace(pos0)
 				pos1 = CurrentCamera.CFrame:PointToObjectSpace(pos1)
@@ -1539,27 +1539,27 @@ local celinaHUB = (function()
 		return rbxsignal
 	end
 
-	function CELINA_:_AddDragBlacklist(Frame)
+	function Eternal:_AddDragBlacklist(Frame)
 		local IsAdded = false
 		local BASE_TIME = 0.01
 
 		local SET_BLACKLIST = function(value)
-			local index = table.find(CELINA_.DragBlacklist, Frame)
+			local index = table.find(Eternal.DragBlacklist, Frame)
 
-			if value and not CELINA_.IS_DRAG_MOVE then
+			if value and not Eternal.IS_DRAG_MOVE then
 				if not index then
-					table.insert(CELINA_.DragBlacklist, Frame)
+					table.insert(Eternal.DragBlacklist, Frame)
 				end
 			else
 				if index then
-					table.remove(CELINA_.DragBlacklist, index)
+					table.remove(Eternal.DragBlacklist, index)
 				end
 			end
 		end
 
 		UserInputService.InputBegan:Connect(function(input)
 			if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
-				if CELINA_:_IsMouseOverFrame(Frame) then
+				if Eternal:_IsMouseOverFrame(Frame) then
 					SET_BLACKLIST(true)
 				end
 			end
@@ -1572,31 +1572,31 @@ local celinaHUB = (function()
 		end)
 
 		UserInputService.InputChanged:Connect(function()
-			if not CELINA_:_IsMouseOverFrame(Frame) then
+			if not Eternal:_IsMouseOverFrame(Frame) then
 				SET_BLACKLIST(false)
 			end
 		end)
 	end
 
-	function CELINA_:_GetWindowFromElement(Element)
-		if CELINA_.WindowsNil[Element] then
-			return CELINA_.WindowsNil[Element]
+	function Eternal:_GetWindowFromElement(Element)
+		if Eternal.WindowsNil[Element] then
+			return Eternal.WindowsNil[Element]
 		end
 
-		for i, v in next, CELINA_.Windows do
+		for i, v in next, Eternal.Windows do
 			if v and Element:IsDescendantOf(v) then
 				return v
 			end
 		end
 
-		for Frame, Window in next, CELINA_.WindowsNil do
+		for Frame, Window in next, Eternal.WindowsNil do
 			if Element:IsDescendantOf(Frame) or Frame == Element then
 				return Window
 			end
 		end
 	end
 
-	function CELINA_.__SIGNAL(default)
+	function Eternal.__SIGNAL(default)
 		local Bindable = Instance.new("BindableEvent")
 
 		Bindable.Name = string.sub(tostring({}), 7)
@@ -1634,13 +1634,13 @@ local celinaHUB = (function()
 		return Binds
 	end
 
-	function CELINA_:_Hover(Frame, OnHover, Release)
+	function Eternal:_Hover(Frame, OnHover, Release)
 		Frame.MouseEnter:Connect(OnHover)
 
 		Frame.MouseLeave:Connect(Release)
 	end
 
-	function CELINA_.__CONFIG(config, default)
+	function Eternal.__CONFIG(config, default)
 		config = config or {}
 
 		for i, v in next, default do
@@ -1652,7 +1652,7 @@ local celinaHUB = (function()
 		return config
 	end
 
-	function CELINA_:Drag(InputFrame, MoveFrame, Speed)
+	function Eternal:Drag(InputFrame, MoveFrame, Speed)
 		local dragToggle = false
 		local dragStart = nil
 		local startPos = nil
@@ -1663,7 +1663,7 @@ local celinaHUB = (function()
 			local position =
 				UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 
-			CELINA_:_Animation(MoveFrame, Tween, {
+			Eternal:_Animation(MoveFrame, Tween, {
 				Position = position,
 			})
 		end
@@ -1674,54 +1674,54 @@ local celinaHUB = (function()
 				or input.UserInputType == Enum.UserInputType.Touch
 			then
 				task.defer(function()
-					if #CELINA_.DragBlacklist <= 0 then
+					if #Eternal.DragBlacklist <= 0 then
 						dragToggle = true
 						dragStart = input.Position
 						startPos = MoveFrame.Position
 						input.Changed:Connect(function()
 							if input.UserInputState == Enum.UserInputState.End then
 								dragToggle = false
-								CELINA_.IS_DRAG_MOVE = false
+								Eternal.IS_DRAG_MOVE = false
 							end
 						end)
 					end
 				end)
 			end
 
-			if not CELINA_.IsDrage and dragToggle then
-				CELINA_.LastDrag = tick()
+			if not Eternal.IsDrage and dragToggle then
+				Eternal.LastDrag = tick()
 			end
 
-			CELINA_.IaDrag = dragToggle
+			Eternal.IaDrag = dragToggle
 		end)
 
 		UserInputService.InputChanged:Connect(function(input)
 			if
 				(input.UserInputType == Enum.UserInputType.MouseMovement
-				or input.UserInputType == Enum.UserInputType.Touch) and #CELINA_.DragBlacklist <= 0
+				or input.UserInputType == Enum.UserInputType.Touch) and #Eternal.DragBlacklist <= 0
 			then
 				if dragToggle then
-					CELINA_.IS_DRAG_MOVE = true
+					Eternal.IS_DRAG_MOVE = true
 					updateInput(input)
 				else
-					CELINA_.IS_DRAG_MOVE = false
+					Eternal.IS_DRAG_MOVE = false
 				end
 			else
-				if #CELINA_.DragBlacklist > 0 then
+				if #Eternal.DragBlacklist > 0 then
 					dragToggle = false
-					CELINA_.IS_DRAG_MOVE = false
+					Eternal.IS_DRAG_MOVE = false
 				end
 			end
 
-			CELINA_.IaDrag = dragToggle
+			Eternal.IaDrag = dragToggle
 		end)
 	end
 
-	function CELINA_:_IsMobile()
+	function Eternal:_IsMobile()
 		return UserInputService.TouchEnabled
 	end
 
-	function CELINA_:_AddLinkValue(Name, Default, GlobalBlock, LinkValues, rep, Signal)
+	function Eternal:_AddLinkValue(Name, Default, GlobalBlock, LinkValues, rep, Signal)
 		if Name == "Toggle" then
 			local GlowWrapper = Instance.new("Frame")
 			local glowLayers = {}
@@ -1732,7 +1732,7 @@ local celinaHUB = (function()
 			local ToggleValue = Instance.new("Frame")
 			local UICorner_2 = Instance.new("UICorner")
 
-			GlowWrapper.Name = CELINA_:_RandomString()
+			GlowWrapper.Name = Eternal:_RandomString()
 			GlowWrapper.BackgroundTransparency = 1
 			GlowWrapper.BorderSizePixel = 0
 			GlowWrapper.ClipsDescendants = false
@@ -1742,32 +1742,32 @@ local celinaHUB = (function()
 
 			for _, ld in ipairs(glowLayerData) do
 				local gf = Instance.new("Frame")
-				gf.Name = CELINA_:_RandomString()
+				gf.Name = Eternal:_RandomString()
 				gf.AnchorPoint = Vector2.new(0.5, 0.5)
 				gf.Position = UDim2.new(0.5, 0, 0.5, 0)
 				gf.Size = UDim2.new(1, ld[1], 1, ld[2])
-				gf.BackgroundColor3 = CELINA_.Colors.Toggle
+				gf.BackgroundColor3 = Eternal.Colors.Toggle
 				gf.BackgroundTransparency = 1
 				gf.BorderSizePixel = 0
 				gf.ZIndex = GlobalBlock.ZIndex
 				local gc = Instance.new("UICorner")
 				gc.CornerRadius = UDim.new(1, 0)
 				gc.Parent = gf
-				table.insert(CELINA_.Elements.Toggle, { Element = gf, Property = "BackgroundColor3" })
+				table.insert(Eternal.Elements.Toggle, { Element = gf, Property = "BackgroundColor3" })
 				table.insert(glowLayers, { Frame = gf, ActiveTransparency = ld[3] })
 				gf.Parent = GlowWrapper
 			end
 
-			Toggle.Name = CELINA_:_RandomString()
+			Toggle.Name = Eternal:_RandomString()
 			Toggle.AnchorPoint = Vector2.new(0.5, 0.5)
 			Toggle.Position = UDim2.new(0.5, 0, 0.5, 0)
-			Toggle.BackgroundColor3 = CELINA_.Colors.DropColor
+			Toggle.BackgroundColor3 = Eternal.Colors.DropColor
 			Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Toggle.BorderSizePixel = 0
 			Toggle.Size = UDim2.new(0, 30, 0, 16)
 			Toggle.ZIndex = GlobalBlock.ZIndex + 1
 
-			table.insert(CELINA_.Elements.DropColor, {
+			table.insert(Eternal.Elements.DropColor, {
 				Element = Toggle,
 				Property = "BackgroundColor3",
 			})
@@ -1775,19 +1775,19 @@ local celinaHUB = (function()
 			UICorner.CornerRadius = UDim.new(1, 0)
 			UICorner.Parent = Toggle
 
-			UIStroke.Color = CELINA_.Colors.HighStrokeColor
+			UIStroke.Color = Eternal.Colors.HighStrokeColor
 			UIStroke.Parent = Toggle
 			Toggle.Parent = GlowWrapper
 			GlowWrapper.Parent = LinkValues
 
-			table.insert(CELINA_.Elements.HighStrokeColor, {
+			table.insert(Eternal.Elements.HighStrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
 
-			ToggleValue.Name = CELINA_:_RandomString()
+			ToggleValue.Name = Eternal:_RandomString()
 			ToggleValue.AnchorPoint = Vector2.new(0.5, 0.5)
-			ToggleValue.BackgroundColor3 = CELINA_.Colors.SwitchColor
+			ToggleValue.BackgroundColor3 = Eternal.Colors.SwitchColor
 			ToggleValue.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ToggleValue.BorderSizePixel = 0
 			ToggleValue.Position = UDim2.new(0.25, 0, 0.5, 0)
@@ -1810,15 +1810,15 @@ local celinaHUB = (function()
 					if bool then
 						Toggle:SetAttribute("Enabled", true)
 						ToggleValue.Position = UDim2.new(0.75, 0, 0.5, 0)
-						Toggle.BackgroundColor3 = CELINA_.Colors.Toggle
+						Toggle.BackgroundColor3 = Eternal.Colors.Toggle
 						for _, gl in ipairs(glowLayers) do
-							gl.Frame.BackgroundColor3 = CELINA_.Colors.Toggle
+							gl.Frame.BackgroundColor3 = Eternal.Colors.Toggle
 							gl.Frame.BackgroundTransparency = gl.ActiveTransparency
 						end
 					else
 						Toggle:SetAttribute("Enabled", false)
 						ToggleValue.Position = UDim2.new(0.25, 0, 0.5, 0)
-						Toggle.BackgroundColor3 = CELINA_.Colors.DropColor
+						Toggle.BackgroundColor3 = Eternal.Colors.DropColor
 						for _, gl in ipairs(glowLayers) do
 							gl.Frame.BackgroundTransparency = 1
 						end
@@ -1829,19 +1829,19 @@ local celinaHUB = (function()
 				if bool then
 					Toggle:SetAttribute("Enabled", true)
 
-					CELINA_:_Animation(ToggleValue, rep.Tween, {
+					Eternal:_Animation(ToggleValue, rep.Tween, {
 						Position = UDim2.new(0.75, 0, 0.5, 0),
 					})
 
-					CELINA_:_Animation(Toggle, rep.Tween, {
-						BackgroundColor3 = CELINA_.Colors.Toggle,
+					Eternal:_Animation(Toggle, rep.Tween, {
+						BackgroundColor3 = Eternal.Colors.Toggle,
 					})
 
 					for i, gl in ipairs(glowLayers) do
 						task.delay((i - 1) * 0.04, function()
 							if gl.Frame and gl.Frame.Parent then
-								CELINA_:_Animation(gl.Frame, TweenInfo.new(0.15 + i * 0.05, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
-									BackgroundColor3 = CELINA_.Colors.Toggle,
+								Eternal:_Animation(gl.Frame, TweenInfo.new(0.15 + i * 0.05, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
+									BackgroundColor3 = Eternal.Colors.Toggle,
 									BackgroundTransparency = gl.ActiveTransparency,
 								})
 							end
@@ -1850,19 +1850,19 @@ local celinaHUB = (function()
 				else
 					Toggle:SetAttribute("Enabled", false)
 
-					CELINA_:_Animation(ToggleValue, rep.Tween, {
+					Eternal:_Animation(ToggleValue, rep.Tween, {
 						Position = UDim2.new(0.25, 0, 0.5, 0),
 					})
 
-					CELINA_:_Animation(Toggle, rep.Tween, {
-						BackgroundColor3 = CELINA_.Colors.DropColor,
+					Eternal:_Animation(Toggle, rep.Tween, {
+						BackgroundColor3 = Eternal.Colors.DropColor,
 					})
 
 					for i = #glowLayers, 1, -1 do
 						local gl = glowLayers[i]
 						task.delay((#glowLayers - i) * 0.03, function()
 							if gl.Frame and gl.Frame.Parent then
-								CELINA_:_Animation(gl.Frame, TweenInfo.new(0.12 + (#glowLayers - i) * 0.04, Enum.EasingStyle.Sine, Enum.EasingDirection.In), {
+								Eternal:_Animation(gl.Frame, TweenInfo.new(0.12 + (#glowLayers - i) * 0.04, Enum.EasingStyle.Sine, Enum.EasingDirection.In), {
 									BackgroundTransparency = 1,
 								})
 							end
@@ -1871,16 +1871,16 @@ local celinaHUB = (function()
 				end
 			end
 
-			local Input = CELINA_:_Input(Toggle)
+			local Input = Eternal:_Input(Toggle)
 
-			CELINA_:_Hover(Input, function()
+			Eternal:_Hover(Input, function()
 				if not Default then
-					CELINA_:_Animation(ToggleValue, rep.Tween, {
+					Eternal:_Animation(ToggleValue, rep.Tween, {
 						Size = UDim2.new(0.6, 0, 0.6, 0),
 					})
 				end
 			end, function()
-				CELINA_:_Animation(ToggleValue, rep.Tween, {
+				Eternal:_Animation(ToggleValue, rep.Tween, {
 					Size = UDim2.new(0.550000012, 0, 0.550000012, 0),
 				})
 			end)
@@ -1913,15 +1913,15 @@ local celinaHUB = (function()
 				if bool then
 					ToggleElement(Default, true)
 
-					CELINA_:_Animation(ToggleValue, rep.Tween, {
+					Eternal:_Animation(ToggleValue, rep.Tween, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(Toggle, rep.Tween, {
+					Eternal:_Animation(Toggle, rep.Tween, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(UIStroke, rep.Tween, {
+					Eternal:_Animation(UIStroke, rep.Tween, {
 						Transparency = 0,
 					})
 
@@ -1929,7 +1929,7 @@ local celinaHUB = (function()
 						for i, gl in ipairs(glowLayers) do
 							task.delay((i - 1) * 0.04, function()
 								if gl.Frame and gl.Frame.Parent then
-									CELINA_:_Animation(gl.Frame, TweenInfo.new(0.15 + i * 0.05, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
+									Eternal:_Animation(gl.Frame, TweenInfo.new(0.15 + i * 0.05, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {
 										BackgroundTransparency = gl.ActiveTransparency,
 									})
 								end
@@ -1939,15 +1939,15 @@ local celinaHUB = (function()
 				else
 					ToggleElement(false, true)
 
-					CELINA_:_Animation(ToggleValue, rep.Tween, {
+					Eternal:_Animation(ToggleValue, rep.Tween, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(Toggle, rep.Tween, {
+					Eternal:_Animation(Toggle, rep.Tween, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(UIStroke, rep.Tween, {
+					Eternal:_Animation(UIStroke, rep.Tween, {
 						Transparency = 1,
 					})
 
@@ -1955,7 +1955,7 @@ local celinaHUB = (function()
 						local gl = glowLayers[i]
 						task.delay((#glowLayers - i) * 0.03, function()
 							if gl.Frame and gl.Frame.Parent then
-								CELINA_:_Animation(gl.Frame, TweenInfo.new(0.12 + (#glowLayers - i) * 0.04, Enum.EasingStyle.Sine, Enum.EasingDirection.In), {
+								Eternal:_Animation(gl.Frame, TweenInfo.new(0.12 + (#glowLayers - i) * 0.04, Enum.EasingStyle.Sine, Enum.EasingDirection.In), {
 									BackgroundTransparency = 1,
 								})
 							end
@@ -1981,7 +1981,7 @@ local celinaHUB = (function()
 			local UIStroke = Instance.new("UIStroke")
 			local UICorner = Instance.new("UICorner")
 
-			ColorPicker.Name = CELINA_:_RandomString()
+			ColorPicker.Name = Eternal:_RandomString()
 			ColorPicker.Parent = LinkValues
 			ColorPicker.BackgroundTransparency = 1.000
 			ColorPicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1990,7 +1990,7 @@ local celinaHUB = (function()
 			ColorPicker.ZIndex = GlobalBlock.ZIndex + 1
 			ColorPicker.LayoutOrder = -#LinkValues:GetChildren()
 
-			ColorFrame.Name = CELINA_:_RandomString()
+			ColorFrame.Name = Eternal:_RandomString()
 			ColorFrame.Parent = ColorPicker
 			ColorFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 			ColorFrame.BackgroundColor3 = Color3.fromRGB(15, 255, 207)
@@ -2002,10 +2002,10 @@ local celinaHUB = (function()
 
 			UIScale.Parent = ColorFrame
 
-			UIStroke.Color = CELINA_.Colors.HighStrokeColor
+			UIStroke.Color = Eternal.Colors.HighStrokeColor
 			UIStroke.Parent = ColorFrame
 
-			table.insert(CELINA_.Elements.HighStrokeColor, {
+			table.insert(Eternal.Elements.HighStrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
@@ -2022,33 +2022,33 @@ local celinaHUB = (function()
 					return
 				end
 				if bool then
-					CELINA_:_Animation(ColorFrame, _TI_015, {
+					Eternal:_Animation(ColorFrame, _TI_015, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(UIStroke, _TI_015, {
+					Eternal:_Animation(UIStroke, _TI_015, {
 						Transparency = 0,
 					})
 				else
-					CELINA_:_Animation(ColorFrame, _TI_015, {
+					Eternal:_Animation(ColorFrame, _TI_015, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(UIStroke, _TI_015, {
+					Eternal:_Animation(UIStroke, _TI_015, {
 						Transparency = 1,
 					})
 				end
 			end)
 
-			CELINA_:_Hover(ColorPicker, function()
+			Eternal:_Hover(ColorPicker, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(UIScale, _TI_035_Lin, {
+					Eternal:_Animation(UIScale, _TI_035_Lin, {
 						Scale = 1.2,
 					})
 				end
 			end, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(UIScale, _TI_035_Lin, {
+					Eternal:_Animation(UIScale, _TI_035_Lin, {
 						Scale = 1,
 					})
 				end
@@ -2108,9 +2108,9 @@ local celinaHUB = (function()
 			local UIStroke = Instance.new("UIStroke")
 			local TextLabel = Instance.new("TextLabel")
 
-			Keybind.Name = CELINA_:_RandomString()
+			Keybind.Name = Eternal:_RandomString()
 			Keybind.Parent = LinkValues
-			Keybind.BackgroundColor3 = CELINA_.Colors.DropColor
+			Keybind.BackgroundColor3 = Eternal.Colors.DropColor
 			Keybind.BackgroundTransparency = 0.8
 			Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Keybind.BorderSizePixel = 0
@@ -2119,7 +2119,7 @@ local celinaHUB = (function()
 			Keybind.ClipsDescendants = true
 			Keybind.LayoutOrder = -#LinkValues:GetChildren()
 
-			table.insert(CELINA_.Elements.DropColor, {
+			table.insert(Eternal.Elements.DropColor, {
 				Element = Keybind,
 				Property = "BackgroundColor3",
 			})
@@ -2127,10 +2127,10 @@ local celinaHUB = (function()
 			UICorner.CornerRadius = UDim.new(0, 3)
 			UICorner.Parent = Keybind
 
-			UIStroke.Color = CELINA_.Colors.HighStrokeColor
+			UIStroke.Color = Eternal.Colors.HighStrokeColor
 			UIStroke.Parent = Keybind
 
-			table.insert(CELINA_.Elements.HighStrokeColor, {
+			table.insert(Eternal.Elements.HighStrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
@@ -2145,11 +2145,11 @@ local celinaHUB = (function()
 			TextLabel.ZIndex = GlobalBlock.ZIndex + 3
 			TextLabel.Font = Enum.Font.Gotham
 			TextLabel.Text = GetItem(Default or "None")
-			TextLabel.TextColor3 = CELINA_.Colors.SwitchColor
+			TextLabel.TextColor3 = Eternal.Colors.SwitchColor
 			TextLabel.TextSize = 12.000
 			TextLabel.TextTransparency = 0.200
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = TextLabel,
 				Property = "TextColor3",
 			})
@@ -2162,7 +2162,7 @@ local celinaHUB = (function()
 					Vector2.new(math.huge, math.huge)
 				)
 
-				CELINA_:_Animation(Keybind, TweenInfo.new(0.1), {
+				Eternal:_Animation(Keybind, TweenInfo.new(0.1), {
 					Size = UDim2.new(0, size.X + 5, 0, 16),
 				})
 			end
@@ -2171,27 +2171,27 @@ local celinaHUB = (function()
 
 			local ToggleUI = function(bool)
 				if bool then
-					CELINA_:_Animation(Keybind, rep.Tween, {
+					Eternal:_Animation(Keybind, rep.Tween, {
 						BackgroundTransparency = 0.8,
 					})
 
-					CELINA_:_Animation(UIStroke, rep.Tween, {
+					Eternal:_Animation(UIStroke, rep.Tween, {
 						Transparency = 0,
 					})
 
-					CELINA_:_Animation(TextLabel, rep.Tween, {
+					Eternal:_Animation(TextLabel, rep.Tween, {
 						TextTransparency = 0.200,
 					})
 				else
-					CELINA_:_Animation(Keybind, rep.Tween, {
+					Eternal:_Animation(Keybind, rep.Tween, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(UIStroke, rep.Tween, {
+					Eternal:_Animation(UIStroke, rep.Tween, {
 						Transparency = 1,
 					})
 
-					CELINA_:_Animation(TextLabel, rep.Tween, {
+					Eternal:_Animation(TextLabel, rep.Tween, {
 						TextTransparency = 1,
 					})
 				end
@@ -2214,7 +2214,7 @@ local celinaHUB = (function()
 			local UIStroke = Instance.new("UIStroke")
 			local UICorner_2 = Instance.new("UICorner")
 
-			InfoButton.Name = CELINA_:_RandomString()
+			InfoButton.Name = Eternal:_RandomString()
 			InfoButton.Parent = LinkValues
 			InfoButton.BackgroundTransparency = 1.000
 			InfoButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2222,18 +2222,18 @@ local celinaHUB = (function()
 			InfoButton.LayoutOrder = -#LinkValues:GetChildren()
 			InfoButton.Size = UDim2.new(0, 15, 0, 15)
 			InfoButton.ZIndex = GlobalBlock.ZIndex + 25
-			InfoButton.Image = CELINA_:CacheImage("rbxassetid://10723415903")
+			InfoButton.Image = Eternal:CacheImage("rbxassetid://10723415903")
 			InfoButton.ImageTransparency = 0.500
 
 			UICorner.CornerRadius = UDim.new(1, 0)
 			UICorner.Parent = InfoButton
 
-			BlockText.Name = CELINA_:_RandomString()
+			BlockText.Name = Eternal:_RandomString()
 			BlockText.Parent = InfoButton
 			BlockText.AnchorPoint = Vector2.new(0, 0)
-			BlockText.BackgroundColor3 = CELINA_.Colors.BlockColor
+			BlockText.BackgroundColor3 = Eternal.Colors.BlockColor
 
-			table.insert(CELINA_.Elements.BlockColor, {
+			table.insert(Eternal.Elements.BlockColor, {
 				Element = BlockText,
 				Property = "BackgroundColor3",
 			})
@@ -2245,21 +2245,21 @@ local celinaHUB = (function()
 			BlockText.ZIndex = GlobalBlock.ZIndex + 26
 			BlockText.Font = Enum.Font.GothamMedium
 			BlockText.Text = " "
-			BlockText.TextColor3 = CELINA_.Colors.SwitchColor
+			BlockText.TextColor3 = Eternal.Colors.SwitchColor
 			BlockText.TextSize = 13.000
 			BlockText.TextTransparency = 0.300
 			BlockText.TextXAlignment = Enum.TextXAlignment.Left
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = BlockText,
 				Property = "TextColor3",
 			})
 
-			UIStroke.Color = CELINA_.Colors.StrokeColor
+			UIStroke.Color = Eternal.Colors.StrokeColor
 			UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 			UIStroke.Parent = BlockText
 
-			table.insert(CELINA_.Elements.StrokeColor, {
+			table.insert(Eternal.Elements.StrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
@@ -2275,25 +2275,25 @@ local celinaHUB = (function()
 					return
 				end
 				if bool then
-					CELINA_:_Animation(InfoButton, _TI_015, {
+					Eternal:_Animation(InfoButton, _TI_015, {
 						ImageTransparency = 0.500,
 					})
 				else
-					CELINA_:_Animation(InfoButton, _TI_015, {
+					Eternal:_Animation(InfoButton, _TI_015, {
 						ImageTransparency = 1,
 					})
 				end
 			end)
 
-			CELINA_:_Hover(InfoButton, function()
+			Eternal:_Hover(InfoButton, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(InfoButton, _TI_015, {
+					Eternal:_Animation(InfoButton, _TI_015, {
 						ImageTransparency = 0.1,
 					})
 				end
 			end, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(InfoButton, _TI_015, {
+					Eternal:_Animation(InfoButton, _TI_015, {
 						ImageTransparency = 0.500,
 					})
 				end
@@ -2308,14 +2308,14 @@ local celinaHUB = (function()
 			local OptionButton = Instance.new("ImageButton")
 			local UICorner = Instance.new("UICorner")
 
-			OptionButton.Name = CELINA_:_RandomString()
+			OptionButton.Name = Eternal:_RandomString()
 			OptionButton.Parent = LinkValues
 			OptionButton.BackgroundTransparency = 1.000
 			OptionButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			OptionButton.BorderSizePixel = 0
 			OptionButton.Size = UDim2.new(0, 15, 0, 15)
 			OptionButton.ZIndex = GlobalBlock.ZIndex + 2
-			OptionButton.Image = CELINA_:CacheImage("rbxassetid://14007344336")
+			OptionButton.Image = Eternal:CacheImage("rbxassetid://14007344336")
 			OptionButton.ImageTransparency = 0.500
 			OptionButton.LayoutOrder = -#LinkValues:GetChildren()
 
@@ -2330,25 +2330,25 @@ local celinaHUB = (function()
 					return
 				end
 				if bool then
-					CELINA_:_Animation(OptionButton, _TI_015, {
+					Eternal:_Animation(OptionButton, _TI_015, {
 						ImageTransparency = 0.500,
 					})
 				else
-					CELINA_:_Animation(OptionButton, _TI_015, {
+					Eternal:_Animation(OptionButton, _TI_015, {
 						ImageTransparency = 1,
 					})
 				end
 			end)
 
-			CELINA_:_Hover(OptionButton, function()
+			Eternal:_Hover(OptionButton, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(OptionButton, _TI_015, {
+					Eternal:_Animation(OptionButton, _TI_015, {
 						ImageTransparency = 0.1,
 					})
 				end
 			end, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(OptionButton, _TI_015, {
+					Eternal:_Animation(OptionButton, _TI_015, {
 						ImageTransparency = 0.500,
 					})
 				end
@@ -2358,25 +2358,25 @@ local celinaHUB = (function()
 		end
 	end
 
-	function CELINA_:_CreateBlock(Signal)
+	function Eternal:_CreateBlock(Signal)
 		local GlobalBlock = Instance.new("Frame")
 		local BlockText = Instance.new("TextLabel")
 		local LinkValues = Instance.new("Frame")
 		local UIListLayout = Instance.new("UIListLayout")
 		local BlockLine = Instance.new("Frame")
 
-		if CELINA_:_IsMobile() then
-			CELINA_:_AddDragBlacklist(GlobalBlock)
+		if Eternal:_IsMobile() then
+			Eternal:_AddDragBlacklist(GlobalBlock)
 		end
 
-		GlobalBlock.Name = CELINA_:_RandomString()
+		GlobalBlock.Name = Eternal:_RandomString()
 		GlobalBlock.BackgroundTransparency = 1.000
 		GlobalBlock.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		GlobalBlock.BorderSizePixel = 0
 		GlobalBlock.Size = UDim2.new(1, -1, 0, 30)
 		GlobalBlock.ZIndex = 10
 
-		BlockText.Name = CELINA_:_RandomString()
+		BlockText.Name = Eternal:_RandomString()
 		BlockText.AnchorPoint = Vector2.new(0, 0.5)
 		BlockText.BackgroundTransparency = 1.000
 		BlockText.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2386,17 +2386,17 @@ local celinaHUB = (function()
 		BlockText.ZIndex = 10
 		BlockText.Font = Enum.Font.GothamMedium
 		BlockText.Text = "Block"
-		BlockText.TextColor3 = CELINA_.Colors.SwitchColor
+		BlockText.TextColor3 = Eternal.Colors.SwitchColor
 		BlockText.TextSize = 14.000
 		BlockText.TextTransparency = 0.300
 		BlockText.TextXAlignment = Enum.TextXAlignment.Left
 
-		table.insert(CELINA_.Elements.SwitchColor, {
+		table.insert(Eternal.Elements.SwitchColor, {
 			Element = BlockText,
 			Property = "TextColor3",
 		})
 
-		LinkValues.Name = CELINA_:_RandomString()
+		LinkValues.Name = Eternal:_RandomString()
 		LinkValues.AnchorPoint = Vector2.new(1, 0.540000021)
 		LinkValues.BackgroundTransparency = 1.000
 		LinkValues.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2412,9 +2412,9 @@ local celinaHUB = (function()
 		UIListLayout.Padding = UDim.new(0, 8)
 		UIListLayout.Parent = LinkValues
 
-		BlockLine.Name = CELINA_:_RandomString()
+		BlockLine.Name = Eternal:_RandomString()
 		BlockLine.AnchorPoint = Vector2.new(0.5, 1)
-		BlockLine.BackgroundColor3 = CELINA_.Colors.LineColor
+		BlockLine.BackgroundColor3 = Eternal.Colors.LineColor
 		BlockLine.BackgroundTransparency = 0.500
 		BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		BlockLine.BorderSizePixel = 0
@@ -2422,7 +2422,7 @@ local celinaHUB = (function()
 		BlockLine.Size = UDim2.new(1, -26, 0, 1)
 		BlockLine.ZIndex = 12
 
-		table.insert(CELINA_.Elements.LineColor, {
+		table.insert(Eternal.Elements.LineColor, {
 			Element = BlockLine,
 			Property = "BackgroundColor3",
 		})
@@ -2446,13 +2446,13 @@ local celinaHUB = (function()
 		end
 
 		function rep:SetTextColor(Color)
-			local oldIndex = table.find(CELINA_.Elements.SwitchColor, BlockText)
+			local oldIndex = table.find(Eternal.Elements.SwitchColor, BlockText)
 
-			table.remove(CELINA_.Elements.SwitchColor, oldIndex)
+			table.remove(Eternal.Elements.SwitchColor, oldIndex)
 
 			BlockText.TextColor3 = Color
 
-			table.insert(CELINA_.Elements.Risky, {
+			table.insert(Eternal.Elements.Risky, {
 				Element = BlockText,
 				Property = "TextColor3",
 			})
@@ -2471,7 +2471,7 @@ local celinaHUB = (function()
 		function rep:SetTransparency(num)
 			rep.TextTransparency = num
 
-			CELINA_:_Animation(BlockText, _TI_030, {
+			Eternal:_Animation(BlockText, _TI_030, {
 				TextTransparency = rep.TextTransparency,
 			})
 		end
@@ -2501,32 +2501,32 @@ local celinaHUB = (function()
 				return
 			end
 			if bool then
-				CELINA_:_Animation(BlockText, rep.Tween, {
+				Eternal:_Animation(BlockText, rep.Tween, {
 					TextTransparency = rep.TextTransparency,
 				})
 
-				CELINA_:_Animation(BlockLine, rep.Tween, {
+				Eternal:_Animation(BlockLine, rep.Tween, {
 					BackgroundTransparency = 0.500,
 				})
 			else
-				CELINA_:_Animation(BlockText, rep.Tween, {
+				Eternal:_Animation(BlockText, rep.Tween, {
 					TextTransparency = 1,
 				})
 
-				CELINA_:_Animation(BlockLine, rep.Tween, {
+				Eternal:_Animation(BlockLine, rep.Tween, {
 					BackgroundTransparency = 1,
 				})
 			end
 		end
 
 		function rep:AddLink(Name, Default)
-			return CELINA_:_AddLinkValue(Name, Default, GlobalBlock, LinkValues, rep, Signal)
+			return Eternal:_AddLinkValue(Name, Default, GlobalBlock, LinkValues, rep, Signal)
 		end
 
 		return rep
 	end
 
-	CELINA_.Hash = function(str)
+	Eternal.Hash = function(str)
 		if typeof(str) ~= "string" then
 			return "ck-unknow"
 		end
@@ -2542,13 +2542,13 @@ local celinaHUB = (function()
 		return "ck-" .. tostring(math.round(hex + 15)) .. tostring(dh)
 	end
 
-	function CELINA_:CacheImage(id): string
-		if not CELINA_.SecureMode or not id or not id:byte() then
+	function Eternal:CacheImage(id): string
+		if not Eternal.SecureMode or not id or not id:byte() then
 			return id or ""
 		end
 
-		assert(CELINA_.SecureMode, "please use CELINA_:Security(< string >) before cache image")
-		assert(CELINA_.CacheDirectory, "please use CELINA_:Security(< string >) before cache image")
+		assert(Eternal.SecureMode, "please use Eternal:Security(< string >) before cache image")
+		assert(Eternal.CacheDirectory, "please use Eternal:Security(< string >) before cache image")
 
 		local ids = string.match(id, "%d+")
 
@@ -2556,9 +2556,9 @@ local celinaHUB = (function()
 			return id
 		end
 
-		local Hash = CELINA_.Hash(id)
+		local Hash = Eternal.Hash(id)
 
-		local cache_path = string.format("%s/cache-%s.png", CELINA_.CacheDirectory, Hash)
+		local cache_path = string.format("%s/cache-%s.png", Eternal.CacheDirectory, Hash)
 
 		if isfile(cache_path) then
 			return (getcustomasset or getsynasset or function()
@@ -2566,7 +2566,7 @@ local celinaHUB = (function()
 			end)(cache_path)
 		end
 
-		local imgSize = CELINA_.SecurityConfig.ImageScale
+		local imgSize = Eternal.SecurityConfig.ImageScale
 
 		local imagesize = (
 			imgSize and string.format("%sx%s", tostring(math.round(imgSize)), tostring(math.round(imgSize)))
@@ -2614,7 +2614,7 @@ local celinaHUB = (function()
 		return ""
 	end
 
-	function CELINA_:PreloadIcons()
+	function Eternal:PreloadIcons()
 		local RequiredAssets = {
 			"http://www.roblox.com/asset/?id=112554223509763",
 			"rbxassetid://4805639000",
@@ -2627,14 +2627,14 @@ local celinaHUB = (function()
 			"rbxassetid://109535175596957",
 			"rbxassetid://10747384394",
 			"rbxassetid://10734941499",
-			CELINA_.Logo,
+			Eternal.Logo,
 		}
 
-		if CELINA_.SecureMode then
+		if Eternal.SecureMode then
 			for i, v in next, RequiredAssets do
 				task.wait()
 				pcall(function()
-					CELINA_:CacheImage(v)
+					Eternal:CacheImage(v)
 				end)
 			end
 		else
@@ -2646,22 +2646,22 @@ local celinaHUB = (function()
 		end
 	end
 
-	function CELINA_:Security(directory, Config)
-		directory = directory or "CELINA_-Cache"
+	function Eternal:Security(directory, Config)
+		directory = directory or "Eternal-Cache"
 
 		if not isfolder(directory) then
 			makefolder(directory)
 		end
 
-		CELINA_.SecureMode = true
+		Eternal.SecureMode = true
 
-		CELINA_.SecurityConfig = Config or {}
+		Eternal.SecurityConfig = Config or {}
 
-		CELINA_.CacheDirectory = directory
+		Eternal.CacheDirectory = directory
 	end
 
-	function CELINA_:_AddColorPickerPanel(Button, Callback)
-		local Window = CELINA_:_GetWindowFromElement(Button)
+	function Eternal:_AddColorPickerPanel(Button, Callback)
+		local Window = Eternal:_GetWindowFromElement(Button)
 		local BaseZ_Index = math.random(1, 15) * 100
 
 		local ColorPickerWindow = Instance.new("Frame")
@@ -2695,9 +2695,9 @@ local celinaHUB = (function()
 		local UIStroke_8 = Instance.new("UIStroke")
 		local TextLabel = Instance.new("TextLabel")
 
-		ColorPickerWindow.Name = CELINA_:_RandomString()
+		ColorPickerWindow.Name = Eternal:_RandomString()
 		ColorPickerWindow.Parent = Window
-		ColorPickerWindow.BackgroundColor3 = CELINA_.Colors.BlockBackground
+		ColorPickerWindow.BackgroundColor3 = Eternal.Colors.BlockBackground
 		ColorPickerWindow.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		ColorPickerWindow.BorderSizePixel = 0
 		ColorPickerWindow.Position = UDim2.new(123, 0, 123, 0)
@@ -2706,17 +2706,17 @@ local celinaHUB = (function()
 		ColorPickerWindow.AnchorPoint = Vector2.new(0.5, 0)
 		ColorPickerWindow.Active = true
 
-		table.insert(CELINA_.Elements.BlockBackground, {
+		table.insert(Eternal.Elements.BlockBackground, {
 			Element = ColorPickerWindow,
 			Property = "BackgroundColor3",
 		})
 
-		CELINA_:_AddDragBlacklist(ColorPickerWindow)
+		Eternal:_AddDragBlacklist(ColorPickerWindow)
 
-		UIStroke.Color = CELINA_.Colors.HighStrokeColor
+		UIStroke.Color = Eternal.Colors.HighStrokeColor
 		UIStroke.Parent = ColorPickerWindow
 
-		table.insert(CELINA_.Elements.HighStrokeColor, {
+		table.insert(Eternal.Elements.HighStrokeColor, {
 			Element = UIStroke,
 			Property = "Color",
 		})
@@ -2724,7 +2724,7 @@ local celinaHUB = (function()
 		UICorner.CornerRadius = UDim.new(0, 6)
 		UICorner.Parent = ColorPickerWindow
 
-		ColorPickBox.Name = CELINA_:_RandomString()
+		ColorPickBox.Name = Eternal:_RandomString()
 		ColorPickBox.Parent = ColorPickerWindow
 		ColorPickBox.BackgroundColor3 = Color3.fromRGB(39, 255, 35)
 		ColorPickBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2732,9 +2732,9 @@ local celinaHUB = (function()
 		ColorPickBox.Position = UDim2.new(0, 7, 0, 7)
 		ColorPickBox.Size = UDim2.new(0, 145, 0, 145)
 		ColorPickBox.ZIndex = BaseZ_Index + 1
-		ColorPickBox.Image = CELINA_:CacheImage("http://www.roblox.com/asset/?id=112554223509763")
+		ColorPickBox.Image = Eternal:CacheImage("http://www.roblox.com/asset/?id=112554223509763")
 
-		MouseMovement.Name = CELINA_:_RandomString()
+		MouseMovement.Name = Eternal:_RandomString()
 		MouseMovement.Parent = ColorPickBox
 		MouseMovement.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		MouseMovement.BackgroundTransparency = 1.000
@@ -2744,7 +2744,7 @@ local celinaHUB = (function()
 		MouseMovement.Size = UDim2.new(0, 12, 0, 12)
 		MouseMovement.ZIndex = BaseZ_Index + 5
 		MouseMovement.AnchorPoint = Vector2.new(0.5, 0.5)
-		MouseMovement.Image = CELINA_:CacheImage("rbxassetid://4805639000")
+		MouseMovement.Image = Eternal:CacheImage("rbxassetid://4805639000")
 
 		UICorner_2.CornerRadius = UDim.new(0, 2)
 		UICorner_2.Parent = ColorPickBox
@@ -2752,7 +2752,7 @@ local celinaHUB = (function()
 		UIStroke_2.Color = Color3.fromRGB(29, 29, 29)
 		UIStroke_2.Parent = ColorPickBox
 
-		ColorRedGreenBlue.Name = CELINA_:_RandomString()
+		ColorRedGreenBlue.Name = Eternal:_RandomString()
 		ColorRedGreenBlue.Parent = ColorPickerWindow
 		ColorRedGreenBlue.AnchorPoint = Vector2.new(1, 0)
 		ColorRedGreenBlue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2782,7 +2782,7 @@ local celinaHUB = (function()
 		UICorner_3.CornerRadius = UDim.new(1, 0)
 		UICorner_3.Parent = ColorRedGreenBlue
 
-		ColorRGBSlide.Name = CELINA_:_RandomString()
+		ColorRGBSlide.Name = Eternal:_RandomString()
 		ColorRGBSlide.Parent = ColorRedGreenBlue
 		ColorRGBSlide.AnchorPoint = Vector2.new(0.5, 0)
 		ColorRGBSlide.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2793,7 +2793,7 @@ local celinaHUB = (function()
 		ColorRGBSlide.Size = UDim2.new(1, 0, 0, 2)
 		ColorRGBSlide.ZIndex = BaseZ_Index + 7
 
-		Left.Name = CELINA_:_RandomString()
+		Left.Name = Eternal:_RandomString()
 		Left.Parent = ColorRGBSlide
 		Left.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Left.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2803,7 +2803,7 @@ local celinaHUB = (function()
 
 		UIStroke_3.Parent = Left
 
-		Right.Name = CELINA_:_RandomString()
+		Right.Name = Eternal:_RandomString()
 		Right.Parent = ColorRGBSlide
 		Right.AnchorPoint = Vector2.new(1, 0)
 		Right.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2815,7 +2815,7 @@ local celinaHUB = (function()
 
 		UIStroke_4.Parent = Right
 
-		ColorOpc.Name = CELINA_:_RandomString()
+		ColorOpc.Name = Eternal:_RandomString()
 		ColorOpc.Parent = ColorPickerWindow
 		ColorOpc.BackgroundColor3 = Color3.fromRGB(102, 255, 0)
 		ColorOpc.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2827,7 +2827,7 @@ local celinaHUB = (function()
 		UICorner_4.CornerRadius = UDim.new(1, 0)
 		UICorner_4.Parent = ColorOpc
 
-		ColorOptSlide.Name = CELINA_:_RandomString()
+		ColorOptSlide.Name = Eternal:_RandomString()
 		ColorOptSlide.Parent = ColorOpc
 		ColorOptSlide.AnchorPoint = Vector2.new(0, 0.5)
 		ColorOptSlide.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2838,7 +2838,7 @@ local celinaHUB = (function()
 		ColorOptSlide.Size = UDim2.new(0, 2, 1, 0)
 		ColorOptSlide.ZIndex = BaseZ_Index + 7
 
-		Left_2.Name = CELINA_:_RandomString()
+		Left_2.Name = Eternal:_RandomString()
 		Left_2.Parent = ColorOptSlide
 		Left_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Left_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2848,7 +2848,7 @@ local celinaHUB = (function()
 
 		UIStroke_5.Parent = Left_2
 
-		Right_2.Name = CELINA_:_RandomString()
+		Right_2.Name = Eternal:_RandomString()
 		Right_2.Parent = ColorOptSlide
 		Right_2.AnchorPoint = Vector2.new(0, 1)
 		Right_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2868,31 +2868,31 @@ local celinaHUB = (function()
 		UIStroke_7.Color = Color3.fromRGB(29, 29, 29)
 		UIStroke_7.Parent = ColorOpc
 
-		TransparentImage.Name = CELINA_:_RandomString()
+		TransparentImage.Name = Eternal:_RandomString()
 		TransparentImage.Parent = ColorOpc
 		TransparentImage.BackgroundTransparency = 1.000
 		TransparentImage.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TransparentImage.BorderSizePixel = 0
 		TransparentImage.Size = UDim2.new(1, 0, 1, 0)
 		TransparentImage.ZIndex = BaseZ_Index + 5
-		TransparentImage.Image = CELINA_:CacheImage("rbxassetid://6198493000")
+		TransparentImage.Image = Eternal:CacheImage("rbxassetid://6198493000")
 		TransparentImage.ImageColor3 = Color3.fromRGB(206, 206, 206)
 		TransparentImage.ScaleType = Enum.ScaleType.Crop
 
 		UICorner_5.CornerRadius = UDim.new(1, 0)
 		UICorner_5.Parent = TransparentImage
 
-		HexFrame.Name = CELINA_:_RandomString()
+		HexFrame.Name = Eternal:_RandomString()
 		HexFrame.Parent = ColorPickerWindow
 		HexFrame.AnchorPoint = Vector2.new(0.5, 1)
-		HexFrame.BackgroundColor3 = CELINA_.Colors.BlockColor
+		HexFrame.BackgroundColor3 = Eternal.Colors.BlockColor
 		HexFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		HexFrame.BorderSizePixel = 0
 		HexFrame.Position = UDim2.new(0.5, 0, 1, -5)
 		HexFrame.Size = UDim2.new(1, -16, 0, 20)
 		HexFrame.ZIndex = BaseZ_Index + 205
 
-		table.insert(CELINA_.Elements.BlockColor, {
+		table.insert(Eternal.Elements.BlockColor, {
 			Element = HexFrame,
 			Property = "BackgroundColor3",
 		})
@@ -2900,10 +2900,10 @@ local celinaHUB = (function()
 		UICorner_6.CornerRadius = UDim.new(0, 4)
 		UICorner_6.Parent = HexFrame
 
-		UIStroke_8.Color = CELINA_.Colors.HighStrokeColor
+		UIStroke_8.Color = Eternal.Colors.HighStrokeColor
 		UIStroke_8.Parent = HexFrame
 
-		table.insert(CELINA_.Elements.HighStrokeColor, {
+		table.insert(Eternal.Elements.HighStrokeColor, {
 			Element = UIStroke_8,
 			Property = "Color",
 		})
@@ -2918,11 +2918,11 @@ local celinaHUB = (function()
 		TextLabel.ZIndex = BaseZ_Index + 206
 		TextLabel.Font = Enum.Font.Gotham
 		TextLabel.Text = "#FFFFFFF"
-		TextLabel.TextColor3 = CELINA_.Colors.SwitchColor
+		TextLabel.TextColor3 = Eternal.Colors.SwitchColor
 		TextLabel.TextSize = 13.000
 		TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		table.insert(CELINA_.Elements.SwitchColor, {
+		table.insert(Eternal.Elements.SwitchColor, {
 			Element = TextLabel,
 			Property = "TextColor3",
 		})
@@ -2935,17 +2935,17 @@ local celinaHUB = (function()
 		local Tween = TweenInfo.new(0.2, Enum.EasingStyle.Quad)
 		local Tween2 = TweenInfo.new(0.275, Enum.EasingStyle.Quad)
 
-		CELINA_:_AddPropertyEvent(ColorPickerWindow, function(v)
+		Eternal:_AddPropertyEvent(ColorPickerWindow, function(v)
 			ColorPickerWindow.Visible = v
 
-			if CELINA_.PerformanceMode then
+			if Eternal.PerformanceMode then
 				if ColorPickerWindow.Visible then
-					CELINA_:_SetNilP(ColorPickerWindow, Window)
+					Eternal:_SetNilP(ColorPickerWindow, Window)
 				else
-					CELINA_:_SetNilP(ColorPickerWindow, nil)
+					Eternal:_SetNilP(ColorPickerWindow, nil)
 				end
 			else
-				CELINA_:_SetNilP(ColorPickerWindow, Window)
+				Eternal:_SetNilP(ColorPickerWindow, Window)
 			end
 		end)
 
@@ -2973,174 +2973,174 @@ local celinaHUB = (function()
 					ColorPickerWindow.Position = DropPosition
 				end
 
-				CELINA_:_Animation(ColorPickerWindow, Tween2, {
+				Eternal:_Animation(ColorPickerWindow, Tween2, {
 					BackgroundTransparency = 0,
 					Size = UDim2.new(0, 175, 0, 200),
 				})
 
-				CELINA_:_Animation(ColorPickerWindow, Tween, {
+				Eternal:_Animation(ColorPickerWindow, Tween, {
 					Position = MainPosition,
 				})
 
-				CELINA_:_Animation(UIStroke_8, Tween, {
+				Eternal:_Animation(UIStroke_8, Tween, {
 					Transparency = 0,
 				})
 
-				CELINA_:_Animation(UIStroke_7, Tween, {
+				Eternal:_Animation(UIStroke_7, Tween, {
 					Transparency = 0.5,
 				})
 
-				CELINA_:_Animation(UIStroke_6, Tween, {
+				Eternal:_Animation(UIStroke_6, Tween, {
 					Transparency = 0,
 				})
 
-				CELINA_:_Animation(UIStroke_5, Tween, {
+				Eternal:_Animation(UIStroke_5, Tween, {
 					Transparency = 0,
 				})
 
-				CELINA_:_Animation(UIStroke_4, Tween, {
+				Eternal:_Animation(UIStroke_4, Tween, {
 					Transparency = 0,
 				})
 
-				CELINA_:_Animation(UIStroke_3, Tween, {
+				Eternal:_Animation(UIStroke_3, Tween, {
 					Transparency = 0,
 				})
 
-				CELINA_:_Animation(UIStroke_2, Tween, {
+				Eternal:_Animation(UIStroke_2, Tween, {
 					Transparency = 0,
 				})
 
-				CELINA_:_Animation(UIStroke, Tween, {
+				Eternal:_Animation(UIStroke, Tween, {
 					Transparency = 0,
 				})
 
-				CELINA_:_Animation(ColorPickBox, Tween, {
+				Eternal:_Animation(ColorPickBox, Tween, {
 					BackgroundTransparency = 0,
 					ImageTransparency = 0,
 				})
 
-				CELINA_:_Animation(MouseMovement, Tween, {
+				Eternal:_Animation(MouseMovement, Tween, {
 					ImageTransparency = 0,
 				})
 
-				CELINA_:_Animation(ColorOpc, Tween, {
+				Eternal:_Animation(ColorOpc, Tween, {
 					BackgroundTransparency = 0,
 				})
 
-				CELINA_:_Animation(TransparentImage, Tween, {
+				Eternal:_Animation(TransparentImage, Tween, {
 					ImageTransparency = 0,
 				})
 
-				CELINA_:_Animation(Left, Tween, {
+				Eternal:_Animation(Left, Tween, {
 					BackgroundTransparency = 0,
 				})
 
-				CELINA_:_Animation(Left_2, Tween, {
+				Eternal:_Animation(Left_2, Tween, {
 					BackgroundTransparency = 0,
 				})
 
-				CELINA_:_Animation(Right, Tween, {
+				Eternal:_Animation(Right, Tween, {
 					BackgroundTransparency = 0,
 				})
 
-				CELINA_:_Animation(Right_2, Tween, {
+				Eternal:_Animation(Right_2, Tween, {
 					BackgroundTransparency = 0,
 				})
 
-				CELINA_:_Animation(ColorRedGreenBlue, Tween, {
+				Eternal:_Animation(ColorRedGreenBlue, Tween, {
 					BackgroundTransparency = 0,
 				})
 
-				CELINA_:_Animation(HexFrame, Tween, {
+				Eternal:_Animation(HexFrame, Tween, {
 					BackgroundTransparency = 0,
 				})
 
-				CELINA_:_Animation(TextLabel, Tween, {
+				Eternal:_Animation(TextLabel, Tween, {
 					TextTransparency = 0,
 				})
 			else
-				CELINA_:_Animation(UIStroke_8, Tween, {
+				Eternal:_Animation(UIStroke_8, Tween, {
 					Transparency = 1,
 				})
 
-				CELINA_:_Animation(UIStroke_7, Tween, {
+				Eternal:_Animation(UIStroke_7, Tween, {
 					Transparency = 1,
 				})
 
-				CELINA_:_Animation(UIStroke_6, Tween, {
+				Eternal:_Animation(UIStroke_6, Tween, {
 					Transparency = 1,
 				})
 
-				CELINA_:_Animation(UIStroke_5, Tween, {
+				Eternal:_Animation(UIStroke_5, Tween, {
 					Transparency = 1,
 				})
 
-				CELINA_:_Animation(UIStroke_4, Tween, {
+				Eternal:_Animation(UIStroke_4, Tween, {
 					Transparency = 1,
 				})
 
-				CELINA_:_Animation(UIStroke_3, Tween, {
+				Eternal:_Animation(UIStroke_3, Tween, {
 					Transparency = 1,
 				})
 
-				CELINA_:_Animation(UIStroke_2, Tween, {
+				Eternal:_Animation(UIStroke_2, Tween, {
 					Transparency = 1,
 				})
 
-				CELINA_:_Animation(UIStroke, Tween, {
+				Eternal:_Animation(UIStroke, Tween, {
 					Transparency = 1,
 				})
 
-				CELINA_:_Animation(ColorPickerWindow, Tween2, {
+				Eternal:_Animation(ColorPickerWindow, Tween2, {
 					BackgroundTransparency = 1,
 				})
 
-				CELINA_:_Animation(ColorPickerWindow, Tween, {
+				Eternal:_Animation(ColorPickerWindow, Tween, {
 					Position = DropPosition,
 				})
 
-				CELINA_:_Animation(ColorPickBox, Tween, {
+				Eternal:_Animation(ColorPickBox, Tween, {
 					BackgroundTransparency = 1,
 					ImageTransparency = 1,
 				})
 
-				CELINA_:_Animation(MouseMovement, Tween, {
+				Eternal:_Animation(MouseMovement, Tween, {
 					ImageTransparency = 1,
 				})
 
-				CELINA_:_Animation(ColorOpc, Tween, {
+				Eternal:_Animation(ColorOpc, Tween, {
 					BackgroundTransparency = 1,
 				})
 
-				CELINA_:_Animation(TransparentImage, Tween, {
+				Eternal:_Animation(TransparentImage, Tween, {
 					ImageTransparency = 1,
 				})
 
-				CELINA_:_Animation(Left, Tween, {
+				Eternal:_Animation(Left, Tween, {
 					BackgroundTransparency = 1,
 				})
 
-				CELINA_:_Animation(Left_2, Tween, {
+				Eternal:_Animation(Left_2, Tween, {
 					BackgroundTransparency = 1,
 				})
 
-				CELINA_:_Animation(Right, Tween, {
+				Eternal:_Animation(Right, Tween, {
 					BackgroundTransparency = 1,
 				})
 
-				CELINA_:_Animation(Right_2, Tween, {
+				Eternal:_Animation(Right_2, Tween, {
 					BackgroundTransparency = 1,
 				})
 
-				CELINA_:_Animation(ColorRedGreenBlue, Tween, {
+				Eternal:_Animation(ColorRedGreenBlue, Tween, {
 					BackgroundTransparency = 1,
 				})
 
-				CELINA_:_Animation(HexFrame, Tween, {
+				Eternal:_Animation(HexFrame, Tween, {
 					BackgroundTransparency = 1,
 				})
 
-				CELINA_:_Animation(TextLabel, Tween, {
+				Eternal:_Animation(TextLabel, Tween, {
 					TextTransparency = 1,
 				})
 			end
@@ -3162,23 +3162,23 @@ local celinaHUB = (function()
 			local MainColor = Color3.fromHSV(H, S, 1)
 			local RealColor = Color3.fromHSV(H, S, V)
 
-			CELINA_:_Animation(ColorPickBox, TweenInfo.new(0.2), {
+			Eternal:_Animation(ColorPickBox, TweenInfo.new(0.2), {
 				BackgroundColor3 = Color3.fromHSV(H, 1, 1),
 			})
 
-			CELINA_:_Animation(ColorOpc, TweenInfo.new(0.2), {
+			Eternal:_Animation(ColorOpc, TweenInfo.new(0.2), {
 				BackgroundColor3 = RealColor,
 			})
 
-			CELINA_:_Animation(MouseMovement, TweenInfo.new(0.2), {
+			Eternal:_Animation(MouseMovement, TweenInfo.new(0.2), {
 				Position = UDim2.fromScale(S, 1 - V),
 			})
 
-			CELINA_:_Animation(ColorOptSlide, TweenInfo.new(0.2), {
+			Eternal:_Animation(ColorOptSlide, TweenInfo.new(0.2), {
 				Position = UDim2.new(Transparency, 0, 0.5, 0),
 			})
 
-			CELINA_:_Animation(ColorRGBSlide, TweenInfo.new(0.2), {
+			Eternal:_Animation(ColorRGBSlide, TweenInfo.new(0.2), {
 				Position = UDim2.new(0.5, 0, H, 0),
 			})
 
@@ -3233,7 +3233,7 @@ local celinaHUB = (function()
 				Input.UserInputType == Enum.UserInputType.MouseButton1
 				or Input.UserInputType == Enum.UserInputType.Touch
 			then
-				if not CELINA_:_IsMouseOverFrame(ColorPickerWindow) then
+				if not Eternal:_IsMouseOverFrame(ColorPickerWindow) then
 					ToggleUI(false)
 				end
 			end
@@ -3311,9 +3311,9 @@ local celinaHUB = (function()
 		return Args
 	end
 
-	function CELINA_:_DrawKeybinds(Window)
-		if CELINA_.__KEYBINDS_CACHE then
-			return CELINA_.__KEYBINDS_CACHE
+	function Eternal:_DrawKeybinds(Window)
+		if Eternal.__KEYBINDS_CACHE then
+			return Eternal.__KEYBINDS_CACHE
 		end
 
 		local Keybinds = Instance.new("Frame")
@@ -3328,9 +3328,9 @@ local celinaHUB = (function()
 		local UIListLayout = Instance.new("UIListLayout")
 		local MovingFrame = Instance.new("Frame")
 
-		Keybinds.Name = CELINA_:_RandomString()
+		Keybinds.Name = Eternal:_RandomString()
 		Keybinds.Parent = Window
-		Keybinds.BackgroundColor3 = CELINA_.Colors.BGDBColor
+		Keybinds.BackgroundColor3 = Eternal.Colors.BGDBColor
 		Keybinds.BackgroundTransparency = 0.025
 		Keybinds.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Keybinds.BorderSizePixel = 0
@@ -3338,7 +3338,7 @@ local celinaHUB = (function()
 		Keybinds.Size = UDim2.new(0, 125, 0, 25)
 		Keybinds.ZIndex = 150
 
-		table.insert(CELINA_.Elements.BGDBColor, {
+		table.insert(Eternal.Elements.BGDBColor, {
 			Element = Keybinds,
 			Property = "BackgroundColor3",
 		})
@@ -3346,10 +3346,10 @@ local celinaHUB = (function()
 		UICorner.CornerRadius = UDim.new(0, 3)
 		UICorner.Parent = Keybinds
 
-		IconFrame.Name = CELINA_:_RandomString()
+		IconFrame.Name = Eternal:_RandomString()
 		IconFrame.Parent = Keybinds
 		IconFrame.AnchorPoint = Vector2.new(1, 0.5)
-		IconFrame.BackgroundColor3 = CELINA_.Colors.BGDBColor
+		IconFrame.BackgroundColor3 = Eternal.Colors.BGDBColor
 		IconFrame.BackgroundTransparency = 0.300
 		IconFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		IconFrame.BorderSizePixel = 0
@@ -3358,7 +3358,7 @@ local celinaHUB = (function()
 		IconFrame.SizeConstraint = Enum.SizeConstraint.RelativeYY
 		IconFrame.ZIndex = 149
 
-		table.insert(CELINA_.Elements.BGDBColor, {
+		table.insert(Eternal.Elements.BGDBColor, {
 			Element = IconFrame,
 			Property = "BackgroundColor3",
 		})
@@ -3368,19 +3368,19 @@ local celinaHUB = (function()
 
 		Frame.Parent = IconFrame
 		Frame.AnchorPoint = Vector2.new(0, 0.5)
-		Frame.BackgroundColor3 = CELINA_.Colors.Highlight
+		Frame.BackgroundColor3 = Eternal.Colors.Highlight
 		Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Frame.BorderSizePixel = 0
 		Frame.Position = UDim2.new(1, -5, 0.5, 0)
 		Frame.Size = UDim2.new(0, 2, 1, 0)
 		Frame.ZIndex = 151
 
-		table.insert(CELINA_.Elements.Highlight, {
+		table.insert(Eternal.Elements.Highlight, {
 			Element = Frame,
 			Property = "BackgroundColor3",
 		})
 
-		Icon.Name = CELINA_:_RandomString()
+		Icon.Name = Eternal:_RandomString()
 		Icon.Parent = IconFrame
 		Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 		Icon.BackgroundTransparency = 1.000
@@ -3390,9 +3390,9 @@ local celinaHUB = (function()
 		Icon.Size = UDim2.new(0, 20, 0, 20)
 		Icon.SizeConstraint = Enum.SizeConstraint.RelativeYY
 		Icon.ZIndex = 159
-		Icon.Image = CELINA_:CacheImage("rbxassetid://10723416765")
+		Icon.Image = Eternal:CacheImage("rbxassetid://10723416765")
 
-		HeaderFrame.Name = CELINA_:_RandomString()
+		HeaderFrame.Name = Eternal:_RandomString()
 		HeaderFrame.Parent = Keybinds
 		HeaderFrame.AnchorPoint = Vector2.new(0.5, 0)
 		HeaderFrame.BackgroundTransparency = 1.000
@@ -3403,7 +3403,7 @@ local celinaHUB = (function()
 		HeaderFrame.Size = UDim2.new(1, -10, 1, 0)
 		HeaderFrame.ZIndex = 155
 
-		HeadLabel.Name = CELINA_:_RandomString()
+		HeadLabel.Name = Eternal:_RandomString()
 		HeadLabel.Parent = HeaderFrame
 		HeadLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 		HeadLabel.BackgroundTransparency = 1.000
@@ -3414,15 +3414,15 @@ local celinaHUB = (function()
 		HeadLabel.ZIndex = 156
 		HeadLabel.Font = Enum.Font.GothamMedium
 		HeadLabel.Text = "Keybinds"
-		HeadLabel.TextColor3 = CELINA_.Colors.SwitchColor
+		HeadLabel.TextColor3 = Eternal.Colors.SwitchColor
 		HeadLabel.TextSize = 12.000
 
-		table.insert(CELINA_.Elements.SwitchColor, {
+		table.insert(Eternal.Elements.SwitchColor, {
 			Element = HeadLabel,
 			Property = "TextColor3",
 		})
 
-		MainFrame.Name = CELINA_:_RandomString()
+		MainFrame.Name = Eternal:_RandomString()
 		MainFrame.Parent = Keybinds
 		MainFrame.AnchorPoint = Vector2.new(1, 0)
 		MainFrame.BackgroundTransparency = 1.000
@@ -3438,7 +3438,7 @@ local celinaHUB = (function()
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		UIListLayout.Padding = UDim.new(0, 5)
 
-		MovingFrame.Name = CELINA_:_RandomString()
+		MovingFrame.Name = Eternal:_RandomString()
 		MovingFrame.Parent = Keybinds
 		MovingFrame.AnchorPoint = Vector2.new(1, 0.5)
 		MovingFrame.BackgroundTransparency = 1.000
@@ -3447,7 +3447,7 @@ local celinaHUB = (function()
 		MovingFrame.Position = UDim2.new(1, 0, 0.5, 0)
 		MovingFrame.Size = UDim2.new(1, 30, 1, 0)
 
-		CELINA_:Drag(MovingFrame, Keybinds, 0.1)
+		Eternal:Drag(MovingFrame, Keybinds, 0.1)
 
 		local Ref = {
 			Root = Keybinds,
@@ -3460,24 +3460,24 @@ local celinaHUB = (function()
 				local _curY = UIListLayout.AbsoluteContentSize.Y
 				if _curY == _lastContentY then continue end
 				_lastContentY = _curY
-				CELINA_:_Animation(MainFrame, TweenInfo.new(0.4), {
+				Eternal:_Animation(MainFrame, TweenInfo.new(0.4), {
 					Size = UDim2.new(1, 30, 1, _curY + 1),
 				})
 
 				if UIListLayout.AbsoluteContentSize.Y > 1 then
-					CELINA_:_Animation(IconFrame, _TI_025, {
+					Eternal:_Animation(IconFrame, _TI_025, {
 						BackgroundTransparency = 0.3,
 					})
 
-					CELINA_:_Animation(Frame, _TI_025, {
+					Eternal:_Animation(Frame, _TI_025, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(HeadLabel, _TI_025, {
+					Eternal:_Animation(HeadLabel, _TI_025, {
 						TextTransparency = 0,
 					})
 
-					CELINA_:_Animation(Icon, _TI_025, {
+					Eternal:_Animation(Icon, _TI_025, {
 						ImageTransparency = 0,
 					})
 
@@ -3491,42 +3491,42 @@ local celinaHUB = (function()
 						end
 					end
 
-					CELINA_:_Animation(Keybinds, _TI_025, {
+					Eternal:_Animation(Keybinds, _TI_025, {
 						BackgroundTransparency = 0.025,
 						Size = UDim2.new(0, LargF, 0, 25),
 					})
 				else
-					CELINA_:_Animation(HeadLabel, _TI_025, {
+					Eternal:_Animation(HeadLabel, _TI_025, {
 						TextTransparency = 1,
 					})
 
-					CELINA_:_Animation(Keybinds, _TI_025, {
+					Eternal:_Animation(Keybinds, _TI_025, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(IconFrame, _TI_025, {
+					Eternal:_Animation(IconFrame, _TI_025, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(Frame, _TI_025, {
+					Eternal:_Animation(Frame, _TI_025, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(Icon, _TI_025, {
+					Eternal:_Animation(Icon, _TI_025, {
 						ImageTransparency = 1,
 					})
 				end
 
 				Keybinds.Visible = (Keybinds.BackgroundTransparency < 0.9 and true) or false
 
-				if CELINA_.PerformanceMode then
+				if Eternal.PerformanceMode then
 					if Keybinds.Visible then
-						CELINA_:_SetNilP(Keybinds, Window)
+						Eternal:_SetNilP(Keybinds, Window)
 					else
-						CELINA_:_SetNilP(Keybinds, nil)
+						Eternal:_SetNilP(Keybinds, nil)
 					end
 				else
-					CELINA_:_SetNilP(Keybinds, Window)
+					Eternal:_SetNilP(Keybinds, Window)
 				end
 			end
 		end)
@@ -3539,8 +3539,8 @@ local celinaHUB = (function()
 			local TypeLabel = Instance.new("TextLabel")
 			local UICorner_2 = Instance.new("UICorner")
 
-			Keyholder.Name = CELINA_:_RandomString()
-			Keyholder.BackgroundColor3 = CELINA_.Colors.BGDBColor
+			Keyholder.Name = Eternal:_RandomString()
+			Keyholder.BackgroundColor3 = Eternal.Colors.BGDBColor
 			Keyholder.BackgroundTransparency = 1
 			Keyholder.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Keyholder.BorderSizePixel = 0
@@ -3548,7 +3548,7 @@ local celinaHUB = (function()
 			Keyholder.ZIndex = MainFrame.ZIndex + 3
 			Keyholder.ClipsDescendants = true
 
-			table.insert(CELINA_.Elements.BGDBColor, {
+			table.insert(Eternal.Elements.BGDBColor, {
 				Element = Keyholder,
 				Property = "BackgroundColor3",
 			})
@@ -3556,7 +3556,7 @@ local celinaHUB = (function()
 			UICorner.CornerRadius = UDim.new(0, 3)
 			UICorner.Parent = Keyholder
 
-			Label.Name = CELINA_:_RandomString()
+			Label.Name = Eternal:_RandomString()
 			Label.Parent = Keyholder
 			Label.AnchorPoint = Vector2.new(0.5, 0.5)
 			Label.BackgroundTransparency = 1.000
@@ -3566,32 +3566,32 @@ local celinaHUB = (function()
 			Label.Size = UDim2.new(1, -10, 1, 0)
 			Label.ZIndex = MainFrame.ZIndex + 5
 			Label.Font = Enum.Font.GothamMedium
-			Label.TextColor3 = CELINA_.Colors.SwitchColor
+			Label.TextColor3 = Eternal.Colors.SwitchColor
 			Label.TextSize = 11.000
 			Label.TextTransparency = 1
 			Label.TextXAlignment = Enum.TextXAlignment.Left
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = Label,
 				Property = "TextColor3",
 			})
 
-			Line.Name = CELINA_:_RandomString()
+			Line.Name = Eternal:_RandomString()
 			Line.Parent = Keyholder
 			Line.AnchorPoint = Vector2.new(1, 0.5)
-			Line.BackgroundColor3 = CELINA_.Colors.BGDBColor
+			Line.BackgroundColor3 = Eternal.Colors.BGDBColor
 			Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Line.BorderSizePixel = 0
 			Line.Position = UDim2.new(1, 0, 0.5, 0)
 			Line.Size = UDim2.new(0, 30, 1, 0)
 			Line.ZIndex = MainFrame.ZIndex + 4
 
-			table.insert(CELINA_.Elements.BGDBColor, {
+			table.insert(Eternal.Elements.BGDBColor, {
 				Element = Line,
 				Property = "BackgroundColor3",
 			})
 
-			TypeLabel.Name = CELINA_:_RandomString()
+			TypeLabel.Name = Eternal:_RandomString()
 			TypeLabel.Parent = Line
 			TypeLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 			TypeLabel.BackgroundTransparency = 1.000
@@ -3601,10 +3601,10 @@ local celinaHUB = (function()
 			TypeLabel.Size = UDim2.new(1, 0, 1, 0)
 			TypeLabel.ZIndex = MainFrame.ZIndex + 6
 			TypeLabel.Font = Enum.Font.GothamMedium
-			TypeLabel.TextColor3 = CELINA_.Colors.SwitchColor
+			TypeLabel.TextColor3 = Eternal.Colors.SwitchColor
 			TypeLabel.TextSize = 11.000
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = TypeLabel,
 				Property = "TextColor3",
 			})
@@ -3645,37 +3645,37 @@ local celinaHUB = (function()
 
 			function frame_ref:SetVisible(v)
 				if v then
-					CELINA_:_Animation(Keyholder, TweenInfo.new(0.1), {
+					Eternal:_Animation(Keyholder, TweenInfo.new(0.1), {
 						BackgroundTransparency = 0.600,
 						Size = UDim2.new(1, 0, 0, 28),
 					})
 
-					CELINA_:_Animation(Label, _TI_015, {
+					Eternal:_Animation(Label, _TI_015, {
 						TextTransparency = 0.100,
 					})
 
-					CELINA_:_Animation(Line, _TI_015, {
+					Eternal:_Animation(Line, _TI_015, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(TypeLabel, _TI_015, {
+					Eternal:_Animation(TypeLabel, _TI_015, {
 						TextTransparency = 0,
 					})
 				else
-					CELINA_:_Animation(Keyholder, TweenInfo.new(0.1), {
+					Eternal:_Animation(Keyholder, TweenInfo.new(0.1), {
 						BackgroundTransparency = 1,
 						Size = UDim2.new(1, 0, 0, 0),
 					})
 
-					CELINA_:_Animation(Label, _TI_015, {
+					Eternal:_Animation(Label, _TI_015, {
 						TextTransparency = 1,
 					})
 
-					CELINA_:_Animation(Line, _TI_015, {
+					Eternal:_Animation(Line, _TI_015, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(TypeLabel, _TI_015, {
+					Eternal:_Animation(TypeLabel, _TI_015, {
 						TextTransparency = 1,
 					})
 				end
@@ -3692,12 +3692,12 @@ local celinaHUB = (function()
 			return frame_ref
 		end
 
-		CELINA_.__KEYBINDS_CACHE = Ref
+		Eternal.__KEYBINDS_CACHE = Ref
 
 		return Ref
 	end
 
-	function CELINA_:_KeybindHandler(
+	function Eternal:_KeybindHandler(
 		Parent,
 		ObjectType,
 		ElementAPI: Toggle & Slider,
@@ -3705,10 +3705,10 @@ local celinaHUB = (function()
 		Zindex,
 		ElementCFG: Slider
 	)
-		local Window = CELINA_:_GetWindowFromElement(Parent)
-		local KB_Signal = CELINA_.__SIGNAL(false)
+		local Window = Eternal:_GetWindowFromElement(Parent)
+		local KB_Signal = Eternal.__SIGNAL(false)
 		local SubIndex = math.random(40, 100)
-		local KeybindInd = CELINA_:_DrawKeybinds(Window)
+		local KeybindInd = Eternal:_DrawKeybinds(Window)
 		local KeybindFrame = KeybindInd:AddFrame()
 
 		local KeybindHandler = Instance.new("Frame")
@@ -3717,9 +3717,9 @@ local celinaHUB = (function()
 		local ElementObjs = Instance.new("Frame")
 		local UIListLayout = Instance.new("UIListLayout")
 
-		KeybindHandler.Name = CELINA_:_RandomString()
+		KeybindHandler.Name = Eternal:_RandomString()
 		KeybindHandler.Parent = Window
-		KeybindHandler.BackgroundColor3 = CELINA_.Colors.BlockBackground
+		KeybindHandler.BackgroundColor3 = Eternal.Colors.BlockBackground
 		KeybindHandler.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		KeybindHandler.BorderSizePixel = 0
 		KeybindHandler.ClipsDescendants = true
@@ -3728,15 +3728,15 @@ local celinaHUB = (function()
 		KeybindHandler.ZIndex = Zindex + SubIndex
 		KeybindHandler.AnchorPoint = Vector2.new(0.5, 0)
 
-		table.insert(CELINA_.Elements.BlockBackground, {
+		table.insert(Eternal.Elements.BlockBackground, {
 			Element = KeybindHandler,
 			Property = "BackgroundColor3",
 		})
 
-		UIStroke.Color = CELINA_.Colors.HighStrokeColor
+		UIStroke.Color = Eternal.Colors.HighStrokeColor
 		UIStroke.Parent = KeybindHandler
 
-		table.insert(CELINA_.Elements.HighStrokeColor, {
+		table.insert(Eternal.Elements.HighStrokeColor, {
 			Element = UIStroke,
 			Property = "Color",
 		})
@@ -3744,7 +3744,7 @@ local celinaHUB = (function()
 		UICorner.CornerRadius = UDim.new(0, 6)
 		UICorner.Parent = KeybindHandler
 
-		ElementObjs.Name = CELINA_:_RandomString()
+		ElementObjs.Name = Eternal:_RandomString()
 		ElementObjs.Parent = KeybindHandler
 		ElementObjs.AnchorPoint = Vector2.new(0.5, 0.5)
 		ElementObjs.BackgroundTransparency = 1.000
@@ -3759,14 +3759,14 @@ local celinaHUB = (function()
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
 		local refreshPF = function()
-			if CELINA_.PerformanceMode then
+			if Eternal.PerformanceMode then
 				if KeybindHandler.Size.Y.Offset > 1 then
-					CELINA_:_SetNilP(KeybindHandler, Window)
+					Eternal:_SetNilP(KeybindHandler, Window)
 				else
-					CELINA_:_SetNilP(KeybindHandler, nil)
+					Eternal:_SetNilP(KeybindHandler, nil)
 				end
 			else
-				CELINA_:_SetNilP(KeybindHandler, Window)
+				Eternal:_SetNilP(KeybindHandler, Window)
 			end
 		end
 
@@ -3778,21 +3778,21 @@ local celinaHUB = (function()
 			if bool then
 				KeybindHandler.Position = UDim2.new(0, Parent.AbsolutePosition.X + 225, 0, Parent.AbsolutePosition.Y)
 
-				CELINA_:_Animation(KeybindHandler, _TI_025, {
+				Eternal:_Animation(KeybindHandler, _TI_025, {
 					BackgroundTransparency = 0,
 					Size = UDim2.new(0, 225, 0, UIListLayout.AbsoluteContentSize.Y + 5),
 				})
 
-				CELINA_:_Animation(UIStroke, _TI_030, {
+				Eternal:_Animation(UIStroke, _TI_030, {
 					Transparency = 0,
 				})
 			else
-				CELINA_:_Animation(KeybindHandler, _TI_030, {
+				Eternal:_Animation(KeybindHandler, _TI_030, {
 					BackgroundTransparency = 1,
 					Size = UDim2.new(0, 225, 0, 0),
 				})
 
-				CELINA_:_Animation(UIStroke, _TI_030, {
+				Eternal:_Animation(UIStroke, _TI_030, {
 					Transparency = 1,
 				})
 			end
@@ -3839,7 +3839,7 @@ local celinaHUB = (function()
 			KeybindFrame:SetType(ModeEnum[APIRef.Mode])
 		end
 
-		local ElementAPIs = CELINA_:_LoadElement(ElementObjs, true, KB_Signal, true)
+		local ElementAPIs = Eternal:_LoadElement(ElementObjs, true, KB_Signal, true)
 
 		Flag.Key = ElementAPIs:AddKeybind({
 			Name = "Key",
@@ -3964,7 +3964,7 @@ local celinaHUB = (function()
 				or Input.UserInputType == Enum.UserInputType.MouseButton2
 				or Input.UserInputType == Enum.UserInputType.Touch
 			then
-				if not CELINA_:_IsMouseOverFrame(Parent) and not CELINA_:_IsMouseOverFrame(KeybindHandler) then
+				if not Eternal:_IsMouseOverFrame(Parent) and not Eternal:_IsMouseOverFrame(KeybindHandler) then
 					KB_Signal:Fire(false)
 				end
 			end
@@ -4007,19 +4007,19 @@ local celinaHUB = (function()
 		return APIRef
 	end
 
-	function CELINA_:_AddPropertyEvent(Target, Callback)
+	function Eternal:_AddPropertyEvent(Target, Callback)
 		Target:GetPropertyChangedSignal("BackgroundTransparency"):Connect(function()
 			Callback(Target.BackgroundTransparency <= 0.9)
 		end)
 	end
 
-	function CELINA_:_LoadOption(Value, TabSignal)
+	function Eternal:_LoadOption(Value, TabSignal)
 		local Args = {}
-		local Window = CELINA_:_GetWindowFromElement(Value.Root)
+		local Window = Eternal:_GetWindowFromElement(Value.Root)
 		local Tween = TweenInfo.new(0.3, Enum.EasingStyle.Quint)
 
 		function Args:AddKeybind(Config)
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Name = "Keybind",
 				Default = nil,
 				Flag = nil,
@@ -4035,7 +4035,7 @@ local celinaHUB = (function()
 				return Config.Blacklist and (Config.Blacklist[v] or table.find(Config.Blacklist, v))
 			end
 
-			CELINA_:_Input(Keybind.Root, function()
+			Eternal:_Input(Keybind.Root, function()
 				if IsBinding then
 					return
 				end
@@ -4072,13 +4072,13 @@ local celinaHUB = (function()
 
 				local KeyName = (typeof(Selected) == "string" and Selected) or Selected.Name
 
-				local _oldConflict = CELINA_._KeybindRegistry[KeyName]
+				local _oldConflict = Eternal._KeybindRegistry[KeyName]
 				if _oldConflict and _oldConflict ~= Config then
 					if _oldConflict._unbind then
 						_oldConflict._unbind()
 					end
-					if CELINA_.NOTIFY_CACHE then
-						CELINA_.NOTIFY_CACHE.new({
+					if Eternal.NOTIFY_CACHE then
+						Eternal.NOTIFY_CACHE.new({
 							Title = "Keybind Conflict",
 							Content = KeyName .. " was unbound from " .. (_oldConflict.Name or "another element"),
 							Duration = 3,
@@ -4086,12 +4086,12 @@ local celinaHUB = (function()
 					end
 				end
 
-				if Config.Default and CELINA_._KeybindRegistry[tostring(Config.Default)] == Config then
-					CELINA_._KeybindRegistry[tostring(Config.Default)] = nil
+				if Config.Default and Eternal._KeybindRegistry[tostring(Config.Default)] == Config then
+					Eternal._KeybindRegistry[tostring(Config.Default)] = nil
 				end
 
 				Config.Default = KeyName
-				CELINA_._KeybindRegistry[KeyName] = Config
+				Eternal._KeybindRegistry[KeyName] = Config
 
 				Keybind.SetValue(Selected)
 
@@ -4111,13 +4111,13 @@ local celinaHUB = (function()
 
 			if Config.Default then
 				local _defKey = (typeof(Config.Default) == "string" and Config.Default) or Config.Default.Name
-				CELINA_._KeybindRegistry[_defKey] = Config
+				Eternal._KeybindRegistry[_defKey] = Config
 			end
 
 			function Args:SetValue(value)
 				if not value then return end
 				local _valName = (typeof(value) == "string" and value) or value.Name
-				local _oldConflict = CELINA_._KeybindRegistry[_valName]
+				local _oldConflict = Eternal._KeybindRegistry[_valName]
 				if _oldConflict and _oldConflict ~= Config then
 					if _oldConflict._unbind then
 						_oldConflict._unbind()
@@ -4125,12 +4125,12 @@ local celinaHUB = (function()
 				end
 				if Config.Default then
 					local _prevKey = (typeof(Config.Default) == "string" and Config.Default) or Config.Default.Name
-					if CELINA_._KeybindRegistry[_prevKey] == Config then
-						CELINA_._KeybindRegistry[_prevKey] = nil
+					if Eternal._KeybindRegistry[_prevKey] == Config then
+						Eternal._KeybindRegistry[_prevKey] = nil
 					end
 				end
 				Config.Default = value
-				CELINA_._KeybindRegistry[_valName] = Config
+				Eternal._KeybindRegistry[_valName] = Config
 
 				Keybind.SetValue(Config.Default)
 
@@ -4142,14 +4142,14 @@ local celinaHUB = (function()
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			return Args
 		end
 
 		function Args:AddHelper(Config)
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Text = "Information.",
 			})
 
@@ -4165,14 +4165,14 @@ local celinaHUB = (function()
 					Helper.Text.Visible = true
 				end
 
-				if CELINA_.PerformanceMode then
+				if Eternal.PerformanceMode then
 					if Helper.Text.Visible then
-						CELINA_:_SetNilP(Helper.Text, Window)
+						Eternal:_SetNilP(Helper.Text, Window)
 					else
-						CELINA_:_SetNilP(Helper.Text, nil)
+						Eternal:_SetNilP(Helper.Text, nil)
 					end
 				else
-					CELINA_:_SetNilP(Helper.Text, Window)
+					Eternal:_SetNilP(Helper.Text, Window)
 				end
 			end)
 
@@ -4190,7 +4190,7 @@ local celinaHUB = (function()
 					Vector2.new(math.huge, math.huge)
 				)
 
-				CELINA_:_Animation(Helper.Text, _TI_015, {
+				Eternal:_Animation(Helper.Text, _TI_015, {
 					Size = UDim2.fromOffset(scale.X + 50, scale.Y + 5),
 				})
 
@@ -4200,13 +4200,13 @@ local celinaHUB = (function()
 			local Release = function()
 				local scale = Update()
 
-				CELINA_:_Animation(Helper.Text, _TI_015, {
+				Eternal:_Animation(Helper.Text, _TI_015, {
 					TextTransparency = 1,
 					BackgroundTransparency = 1,
 					Position = UDim2.fromOffset(Button.AbsolutePosition.X, Button.AbsolutePosition.Y + 45),
 				})
 
-				CELINA_:_Animation(Helper.UIStroke, _TI_015, {
+				Eternal:_Animation(Helper.UIStroke, _TI_015, {
 					Transparency = 1,
 				})
 			end
@@ -4218,7 +4218,7 @@ local celinaHUB = (function()
 					Helper.Text.Position = UDim2.fromOffset(Button.AbsolutePosition.X, Button.AbsolutePosition.Y + 45)
 				end
 
-				CELINA_:_Animation(Helper.Text, _TI_015, {
+				Eternal:_Animation(Helper.Text, _TI_015, {
 					TextTransparency = 0.35,
 					BackgroundTransparency = 0,
 					Position = UDim2.fromOffset(
@@ -4227,12 +4227,12 @@ local celinaHUB = (function()
 					),
 				})
 
-				CELINA_:_Animation(Helper.UIStroke, _TI_015, {
+				Eternal:_Animation(Helper.UIStroke, _TI_015, {
 					Transparency = 0,
 				})
 			end
 
-			CELINA_:_Hover(Button, Hold, Release)
+			Eternal:_Hover(Button, Hold, Release)
 
 			Release()
 
@@ -4246,7 +4246,7 @@ local celinaHUB = (function()
 		end
 
 		function Args:AddColorPicker(Config)
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Default = Color3.fromRGB(255, 255, 255),
 				Transparency = 0,
 				Callback = function() end,
@@ -4254,9 +4254,9 @@ local celinaHUB = (function()
 
 			local ColorPicker, ColorFrame =Value:AddLink("ColorPicker", Config.Default)
 
-			local Button = CELINA_:_Input(ColorPicker)
+			local Button = Eternal:_Input(ColorPicker)
 
-			local ColorPicker = CELINA_:_AddColorPickerPanel(Button, function(color, opc)
+			local ColorPicker = Eternal:_AddColorPickerPanel(Button, function(color, opc)
 				Config.Default = color
 				Config.Transparency = opc
 
@@ -4294,7 +4294,7 @@ local celinaHUB = (function()
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			return Args
@@ -4302,7 +4302,7 @@ local celinaHUB = (function()
 
 		function Args:AddToggle(Config)
 			_renderYield()
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Flag = nil,
 				Default = false,
 				Callback = function() end,
@@ -4335,7 +4335,7 @@ local celinaHUB = (function()
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			return Args
@@ -4345,7 +4345,7 @@ local celinaHUB = (function()
 			local Element = Value:AddLink("Option")
 			local BaseZ_Index = math.random(1, 15) * 100
 
-			local Signal = CELINA_.__SIGNAL(false)
+			local Signal = Eternal.__SIGNAL(false)
 
 			local ExtractElement = Instance.new("Frame")
 			local UIStroke = Instance.new("UIStroke")
@@ -4378,49 +4378,49 @@ local celinaHUB = (function()
 						ExtractElement.Position = DropPosition
 					end
 
-					CELINA_:_Animation(ExtractElement, Tween, {
+					Eternal:_Animation(ExtractElement, Tween, {
 						Position = MainPosition,
 						BackgroundTransparency = 0,
 						Size = UDim2.new(0, 225, 0, UIListLayout.AbsoluteContentSize.Y),
 					})
 
-					CELINA_:_Animation(UIStroke, Tween, {
+					Eternal:_Animation(UIStroke, Tween, {
 						Transparency = 0,
 					})
 				else
 					Signal:Fire(false)
 
-					CELINA_:_Animation(ExtractElement, Tween, {
+					Eternal:_Animation(ExtractElement, Tween, {
 						Position = DropPosition,
 						BackgroundTransparency = 1,
 						Size = UDim2.new(0, 225, 0, UIListLayout.AbsoluteContentSize.Y - 10),
 					})
 
-					CELINA_:_Animation(UIStroke, Tween, {
+					Eternal:_Animation(UIStroke, Tween, {
 						Transparency = 1,
 					})
 				end
 			end
 
-			CELINA_:_AddPropertyEvent(ExtractElement, function(bool)
+			Eternal:_AddPropertyEvent(ExtractElement, function(bool)
 				ExtractElement.Visible = bool
 
-				if CELINA_.PerformanceMode then
+				if Eternal.PerformanceMode then
 					if ExtractElement.Visible then
-						CELINA_:_SetNilP(ExtractElement, Window)
+						Eternal:_SetNilP(ExtractElement, Window)
 					else
-						CELINA_:_SetNilP(ExtractElement, nil)
+						Eternal:_SetNilP(ExtractElement, nil)
 					end
 				else
-					CELINA_:_SetNilP(ExtractElement, Window)
+					Eternal:_SetNilP(ExtractElement, Window)
 				end
 			end)
 
-			CELINA_:_AddDragBlacklist(ExtractElement)
+			Eternal:_AddDragBlacklist(ExtractElement)
 
-			ExtractElement.Name = CELINA_:_RandomString()
+			ExtractElement.Name = Eternal:_RandomString()
 			ExtractElement.Parent = Window
-			ExtractElement.BackgroundColor3 = CELINA_.Colors.BlockBackground
+			ExtractElement.BackgroundColor3 = Eternal.Colors.BlockBackground
 			ExtractElement.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ExtractElement.BorderSizePixel = 0
 			ExtractElement.ClipsDescendants = true
@@ -4430,15 +4430,15 @@ local celinaHUB = (function()
 			ExtractElement.Visible = false
 			ExtractElement.ClipsDescendants = true
 
-			table.insert(CELINA_.Elements.BlockBackground, {
+			table.insert(Eternal.Elements.BlockBackground, {
 				Element = ExtractElement,
 				Property = "BackgroundColor3",
 			})
 
-			UIStroke.Color = CELINA_.Colors.HighStrokeColor
+			UIStroke.Color = Eternal.Colors.HighStrokeColor
 			UIStroke.Parent = ExtractElement
 
-			table.insert(CELINA_.Elements.HighStrokeColor, {
+			table.insert(Eternal.Elements.HighStrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
@@ -4446,7 +4446,7 @@ local celinaHUB = (function()
 			UICorner.CornerRadius = UDim.new(0, 6)
 			UICorner.Parent = ExtractElement
 
-			Elements.Name = CELINA_:_RandomString()
+			Elements.Name = Eternal:_RandomString()
 			Elements.Parent = ExtractElement
 			Elements.AnchorPoint = Vector2.new(0.5, 0.5)
 			Elements.BackgroundTransparency = 1.000
@@ -4474,22 +4474,22 @@ local celinaHUB = (function()
 				then
 					if
 						Toggl
-						and not CELINA_:_IsMouseOverFrame(ExtractElement)
-						and not CELINA_:_IsMouseOverFrame(Element)
+						and not Eternal:_IsMouseOverFrame(ExtractElement)
+						and not Eternal:_IsMouseOverFrame(Element)
 					then
 						ToggleUI(false)
 					end
 				end
 			end)
 
-			return CELINA_:_LoadElement(Elements, true, Signal)
+			return Eternal:_LoadElement(Elements, true, Signal)
 		end
 
 		return Args
 	end
 
-	function CELINA_:_LoadDropdown(BaseParent, Callback)
-		local Window = CELINA_:_GetWindowFromElement(BaseParent)
+	function Eternal:_LoadDropdown(BaseParent, Callback)
+		local Window = Eternal:_GetWindowFromElement(BaseParent)
 
 		local BaseZ_Index = BaseParent.ZIndex + (math.random(1, 15) * 100)
 
@@ -4498,42 +4498,42 @@ local celinaHUB = (function()
 		local UICorner = Instance.new("UICorner")
 		local ScrollingFrame = Instance.new("ScrollingFrame")
 		local UIListLayout = Instance.new("UIListLayout")
-		local ToggleDb = CELINA_.__SIGNAL(false)
-		local EventOut = CELINA_.__SIGNAL(0)
+		local ToggleDb = Eternal.__SIGNAL(false)
+		local EventOut = Eternal.__SIGNAL(0)
 
-		DropdownWindow.Name = CELINA_:_RandomString()
+		DropdownWindow.Name = Eternal:_RandomString()
 		DropdownWindow.Parent = Window
-		DropdownWindow.BackgroundColor3 = CELINA_.Colors.BlockBackground
+		DropdownWindow.BackgroundColor3 = Eternal.Colors.BlockBackground
 		DropdownWindow.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		DropdownWindow.BorderSizePixel = 0
 		DropdownWindow.Position = UDim2.new(123, 0, 123, 0)
 		DropdownWindow.Size = UDim2.new(0, 190, 0, 200)
 		DropdownWindow.ZIndex = BaseZ_Index
 
-		table.insert(CELINA_.Elements.BlockBackground, {
+		table.insert(Eternal.Elements.BlockBackground, {
 			Element = DropdownWindow,
 			Property = "BackgroundColor3",
 		})
 
-		CELINA_:_AddDragBlacklist(DropdownWindow)
-		CELINA_:_AddPropertyEvent(DropdownWindow, function(v)
+		Eternal:_AddDragBlacklist(DropdownWindow)
+		Eternal:_AddPropertyEvent(DropdownWindow, function(v)
 			DropdownWindow.Visible = v
 
-			if CELINA_.PerformanceMode then
+			if Eternal.PerformanceMode then
 				if DropdownWindow.Visible then
-					CELINA_:_SetNilP(DropdownWindow, Window)
+					Eternal:_SetNilP(DropdownWindow, Window)
 				else
-					CELINA_:_SetNilP(DropdownWindow, nil)
+					Eternal:_SetNilP(DropdownWindow, nil)
 				end
 			else
-				CELINA_:_SetNilP(DropdownWindow, Window)
+				Eternal:_SetNilP(DropdownWindow, Window)
 			end
 		end)
 
-		UIStroke.Color = CELINA_.Colors.HighStrokeColor
+		UIStroke.Color = Eternal.Colors.HighStrokeColor
 		UIStroke.Parent = DropdownWindow
 
-		table.insert(CELINA_.Elements.HighStrokeColor, {
+		table.insert(Eternal.Elements.HighStrokeColor, {
 			Element = UIStroke,
 			Property = "Color",
 		})
@@ -4589,8 +4589,8 @@ local celinaHUB = (function()
 					DropdownWindow.Position = DropPosition
 				end
 
-				local _maxDrop = CELINA_:_IsMobile() and 350 or 200
-				CELINA_:_Animation(DropdownWindow, TweenInfo.new(0.2), {
+				local _maxDrop = Eternal:_IsMobile() and 350 or 200
+				Eternal:_Animation(DropdownWindow, TweenInfo.new(0.2), {
 					BackgroundTransparency = 0,
 					Position = MainPosition,
 					Size = UDim2.new(
@@ -4601,12 +4601,12 @@ local celinaHUB = (function()
 					),
 				})
 
-				CELINA_:_Animation(UIStroke, TweenInfo.new(0.2), {
+				Eternal:_Animation(UIStroke, TweenInfo.new(0.2), {
 					Transparency = 0,
 				})
 			else
-				local _maxDrop = CELINA_:_IsMobile() and 350 or 200
-				CELINA_:_Animation(DropdownWindow, TweenInfo.new(0.2), {
+				local _maxDrop = Eternal:_IsMobile() and 350 or 200
+				Eternal:_Animation(DropdownWindow, TweenInfo.new(0.2), {
 					BackgroundTransparency = 1,
 					Position = DropPosition,
 					Size = UDim2.new(
@@ -4617,7 +4617,7 @@ local celinaHUB = (function()
 					),
 				})
 
-				CELINA_:_Animation(UIStroke, TweenInfo.new(0.2), {
+				Eternal:_Animation(UIStroke, TweenInfo.new(0.2), {
 					Transparency = 1,
 				})
 			end
@@ -4636,14 +4636,14 @@ local celinaHUB = (function()
 			local BlockText = Instance.new("TextLabel")
 			local BlockLine = Instance.new("Frame")
 
-			DropdownItem.Name = CELINA_:_RandomString()
+			DropdownItem.Name = Eternal:_RandomString()
 			DropdownItem.BackgroundTransparency = 1.000
 			DropdownItem.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropdownItem.BorderSizePixel = 0
 			DropdownItem.Size = UDim2.new(1, -1, 0, 20)
 			DropdownItem.ZIndex = BaseZ_Index + 6
 
-			BlockText.Name = CELINA_:_RandomString()
+			BlockText.Name = Eternal:_RandomString()
 			BlockText.Parent = DropdownItem
 			BlockText.AnchorPoint = Vector2.new(0, 0.5)
 			BlockText.BackgroundTransparency = 1.000
@@ -4654,20 +4654,20 @@ local celinaHUB = (function()
 			BlockText.ZIndex = BaseZ_Index + 6
 			BlockText.Font = Enum.Font.GothamMedium
 			BlockText.Text = ""
-			BlockText.TextColor3 = CELINA_.Colors.SwitchColor
+			BlockText.TextColor3 = Eternal.Colors.SwitchColor
 			BlockText.TextSize = 13.000
 			BlockText.TextTransparency = 0.500
 			BlockText.TextXAlignment = Enum.TextXAlignment.Left
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = BlockText,
 				Property = "TextColor3",
 			})
 
-			BlockLine.Name = CELINA_:_RandomString()
+			BlockLine.Name = Eternal:_RandomString()
 			BlockLine.Parent = DropdownItem
 			BlockLine.AnchorPoint = Vector2.new(0.5, 1)
-			BlockLine.BackgroundColor3 = CELINA_.Colors.LineColor
+			BlockLine.BackgroundColor3 = Eternal.Colors.LineColor
 			BlockLine.BackgroundTransparency = 0.500
 			BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			BlockLine.BorderSizePixel = 0
@@ -4675,7 +4675,7 @@ local celinaHUB = (function()
 			BlockLine.Size = UDim2.new(1, -6, 0, 1)
 			BlockLine.ZIndex = BaseZ_Index + 7
 
-			table.insert(CELINA_.Elements.LineColor, {
+			table.insert(Eternal.Elements.LineColor, {
 				Element = BlockLine,
 				Property = "BackgroundColor3",
 			})
@@ -4727,19 +4727,19 @@ local celinaHUB = (function()
 					__signals,
 					ToggleDb:Connect(function(bool)
 						if bool then
-							CELINA_:_Animation(bth.BlockText, TweenInfo.new(0.2), {
+							Eternal:_Animation(bth.BlockText, TweenInfo.new(0.2), {
 								TextTransparency = ((IsDefault(v) or MatchDefault(v, DataFrame)) and 0) or 0.5,
 							})
 
-							CELINA_:_Animation(bth.BlockLine, TweenInfo.new(0.2), {
+							Eternal:_Animation(bth.BlockLine, TweenInfo.new(0.2), {
 								BackgroundTransparency = 0,
 							})
 						else
-							CELINA_:_Animation(bth.BlockText, TweenInfo.new(0.2), {
+							Eternal:_Animation(bth.BlockText, TweenInfo.new(0.2), {
 								TextTransparency = 1,
 							})
 
-							CELINA_:_Animation(bth.BlockLine, TweenInfo.new(0.2), {
+							Eternal:_Animation(bth.BlockLine, TweenInfo.new(0.2), {
 								BackgroundTransparency = 1,
 							})
 						end
@@ -4747,7 +4747,7 @@ local celinaHUB = (function()
 				)
 
 				if ToggleDb:GetValue() then
-					CELINA_:_Animation(bth.BlockText, TweenInfo.new(0.2), {
+					Eternal:_Animation(bth.BlockText, TweenInfo.new(0.2), {
 						TextTransparency = ((IsDefault(v) or MatchDefault(v, DataFrame)) and 0) or 0.5,
 					})
 				end
@@ -4763,23 +4763,23 @@ local celinaHUB = (function()
 						DataFrame[v] = false
 					end
 
-					CELINA_:_Animation(bth.BlockText, TweenInfo.new(0.2), {
+					Eternal:_Animation(bth.BlockText, TweenInfo.new(0.2), {
 						TextTransparency = ((MatchDefault(v, DataFrame)) and 0) or 0.5,
 					})
 
-					CELINA_:_Input(bth.DropdownItem, function()
+					Eternal:_Input(bth.DropdownItem, function()
 						DataFrame[v] = not DataFrame[v]
 
-						CELINA_:_Animation(bth.BlockText, TweenInfo.new(0.2), {
+						Eternal:_Animation(bth.BlockText, TweenInfo.new(0.2), {
 							TextTransparency = ((MatchDefault(v, DataFrame)) and 0) or 0.5,
 						})
 
 						Callback(DataFrame)
 					end)
 				else
-					CELINA_:_Input(bth.DropdownItem, function()
+					Eternal:_Input(bth.DropdownItem, function()
 						if DataFrame then
-							CELINA_:_Animation(DataFrame.BlockText, TweenInfo.new(0.2), {
+							Eternal:_Animation(DataFrame.BlockText, TweenInfo.new(0.2), {
 								TextTransparency = ((IsDefault(v) or MatchDefault(v, DataFrame)) and 0) or 0.5,
 							})
 						end
@@ -4788,7 +4788,7 @@ local celinaHUB = (function()
 
 						DataFrame = bth
 
-						CELINA_:_Animation(bth.BlockText, TweenInfo.new(0.2), {
+						Eternal:_Animation(bth.BlockText, TweenInfo.new(0.2), {
 							TextTransparency = ((IsDefault(v) or MatchDefault(v, DataFrame)) and 0) or 0.5,
 						})
 
@@ -4816,7 +4816,7 @@ local celinaHUB = (function()
 				Input.UserInputType == Enum.UserInputType.MouseButton1
 				or Input.UserInputType == Enum.UserInputType.Touch
 			then
-				if not CELINA_:_IsMouseOverFrame(DropdownWindow) then
+				if not Eternal:_IsMouseOverFrame(DropdownWindow) then
 					ToggleUI(false)
 				end
 			end
@@ -4856,7 +4856,7 @@ local celinaHUB = (function()
 		return Args
 	end
 
-	function CELINA_:_LoadElement(Parent, EnabledLine, Signal, DisableStackKeybind)
+	function Eternal:_LoadElement(Parent, EnabledLine, Signal, DisableStackKeybind)
 		local Zindex = Parent.ZIndex + 1
 		local Tween = TweenInfo.new(0.25, Enum.EasingStyle.Quint)
 
@@ -4864,7 +4864,7 @@ local celinaHUB = (function()
 
 		function Args:AddToggle(Config)
 			_renderYield()
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Name = "Toggle",
 				Default = false,
 				Flag = nil,
@@ -4872,14 +4872,14 @@ local celinaHUB = (function()
 				Callback = function() end,
 			})
 
-			local Block = CELINA_:_CreateBlock(Signal)
+			local Block = Eternal:_CreateBlock(Signal)
 
 			Block:SetParent(Parent)
 
 			Block:SetText(Config.Name)
 
 			if Config.Risky then
-				Block:SetTextColor(CELINA_.Colors.Risky)
+				Block:SetTextColor(Eternal.Colors.Risky)
 			end
 
 			Block:SetLine(EnabledLine)
@@ -4920,7 +4920,7 @@ local celinaHUB = (function()
 				Block:SetVisible(bool)
 			end)
 
-			Args.Link = CELINA_:_LoadOption(Block)
+			Args.Link = Eternal:_LoadOption(Block)
 
 			function Args:GetValue()
 				return Config.Default
@@ -4935,11 +4935,11 @@ local celinaHUB = (function()
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			if not DisableStackKeybind then
-				local AutoKeybind = CELINA_:_KeybindHandler(Block.Root, "Toggle", Args, Signal, Zindex, Config)
+				local AutoKeybind = Eternal:_KeybindHandler(Block.Root, "Toggle", Args, Signal, Zindex, Config)
 
 				Args.AutoKeybind = AutoKeybind
 			end
@@ -4948,7 +4948,7 @@ local celinaHUB = (function()
 		end
 
 		function Args:AddKeybind(Config)
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Name = "Keybind",
 				Default = nil,
 				Flag = nil,
@@ -4956,7 +4956,7 @@ local celinaHUB = (function()
 				Blacklist = {},
 			})
 
-			local Block = CELINA_:_CreateBlock(Signal)
+			local Block = Eternal:_CreateBlock(Signal)
 
 			Block:SetParent(Parent)
 
@@ -4974,7 +4974,7 @@ local celinaHUB = (function()
 				return Config.Blacklist and (Config.Blacklist[v] or table.find(Config.Blacklist, v))
 			end
 
-			CELINA_:_Input(Keybind.Root, function()
+			Eternal:_Input(Keybind.Root, function()
 				if IsBinding then
 					return
 				end
@@ -5011,13 +5011,13 @@ local celinaHUB = (function()
 
 				local KeyName = typeof(Selected) == "string" and Selected or Selected.Name
 
-				local _oldConflict = CELINA_._KeybindRegistry[KeyName]
+				local _oldConflict = Eternal._KeybindRegistry[KeyName]
 				if _oldConflict and _oldConflict ~= Config then
 					if _oldConflict._unbind then
 						_oldConflict._unbind()
 					end
-					if CELINA_.NOTIFY_CACHE then
-						CELINA_.NOTIFY_CACHE.new({
+					if Eternal.NOTIFY_CACHE then
+						Eternal.NOTIFY_CACHE.new({
 							Title = "Keybind Conflict",
 							Content = KeyName .. " was unbound from " .. (_oldConflict.Name or "another element"),
 							Duration = 3,
@@ -5025,12 +5025,12 @@ local celinaHUB = (function()
 					end
 				end
 
-				if Config.Default and CELINA_._KeybindRegistry[tostring(Config.Default)] == Config then
-					CELINA_._KeybindRegistry[tostring(Config.Default)] = nil
+				if Config.Default and Eternal._KeybindRegistry[tostring(Config.Default)] == Config then
+					Eternal._KeybindRegistry[tostring(Config.Default)] = nil
 				end
 
 				Config.Default = KeyName
-				CELINA_._KeybindRegistry[KeyName] = Config
+				Eternal._KeybindRegistry[KeyName] = Config
 
 				Keybind.SetValue(Selected)
 
@@ -5050,7 +5050,7 @@ local celinaHUB = (function()
 
 			if Config.Default then
 				local _defKey = (typeof(Config.Default) == "string" and Config.Default) or Config.Default.Name
-				CELINA_._KeybindRegistry[_defKey] = Config
+				Eternal._KeybindRegistry[_defKey] = Config
 			end
 
 			function Args:SetText(str)
@@ -5064,7 +5064,7 @@ local celinaHUB = (function()
 			function Args:SetValue(value)
 				if not value then return end
 				local _valName = (typeof(value) == "string" and value) or value.Name
-				local _oldConflict = CELINA_._KeybindRegistry[_valName]
+				local _oldConflict = Eternal._KeybindRegistry[_valName]
 				if _oldConflict and _oldConflict ~= Config then
 					if _oldConflict._unbind then
 						_oldConflict._unbind()
@@ -5072,12 +5072,12 @@ local celinaHUB = (function()
 				end
 				if Config.Default then
 					local _prevKey = (typeof(Config.Default) == "string" and Config.Default) or Config.Default.Name
-					if CELINA_._KeybindRegistry[_prevKey] == Config then
-						CELINA_._KeybindRegistry[_prevKey] = nil
+					if Eternal._KeybindRegistry[_prevKey] == Config then
+						Eternal._KeybindRegistry[_prevKey] = nil
 					end
 				end
 				Config.Default = value
-				CELINA_._KeybindRegistry[_valName] = Config
+				Eternal._KeybindRegistry[_valName] = Config
 
 				Keybind.SetValue(Config.Default)
 
@@ -5088,21 +5088,21 @@ local celinaHUB = (function()
 				Block:SetVisible(bool)
 			end)
 
-			Args.Link = CELINA_:_LoadOption(Block)
+			Args.Link = Eternal:_LoadOption(Block)
 
 			function Args:GetValue()
 				return (typeof(Config.Default) == "string" and Config.Default) or Config.Default.Name
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			return Args
 		end
 
 		function Args:AddColorPicker(Config)
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Name = "ColorPicker",
 				Default = Color3.fromRGB(255, 255, 255),
 				Flag = nil,
@@ -5110,7 +5110,7 @@ local celinaHUB = (function()
 				Callback = function() end,
 			})
 
-			local Block = CELINA_:_CreateBlock(Signal)
+			local Block = Eternal:_CreateBlock(Signal)
 
 			Block:SetParent(Parent)
 
@@ -5122,9 +5122,9 @@ local celinaHUB = (function()
 
 			local ColorPicker, ColorFrame =Block:AddLink("ColorPicker", Config.Default)
 
-			local Button = CELINA_:_Input(ColorPicker)
+			local Button = Eternal:_Input(ColorPicker)
 
-			local ColorPicker = CELINA_:_AddColorPickerPanel(Button, function(color, opc)
+			local ColorPicker = Eternal:_AddColorPickerPanel(Button, function(color, opc)
 				Config.Default = color
 				Config.Transparency = opc
 
@@ -5163,7 +5163,7 @@ local celinaHUB = (function()
 				Block:SetVisible(bool)
 			end)
 
-			Args.Link = CELINA_:_LoadOption(Block)
+			Args.Link = Eternal:_LoadOption(Block)
 
 			function Args:GetValue()
 				return {
@@ -5175,7 +5175,7 @@ local celinaHUB = (function()
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			return Args
@@ -5183,7 +5183,7 @@ local celinaHUB = (function()
 
 		function Args:AddButton(Config)
 			_renderYield()
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Name = "Button",
 				Callback = function() end,
 			})
@@ -5195,11 +5195,11 @@ local celinaHUB = (function()
 			local UICorner = Instance.new("UICorner")
 			local TextLabel = Instance.new("TextLabel")
 
-			if CELINA_:_IsMobile() then
-				CELINA_:_AddDragBlacklist(Button)
+			if Eternal:_IsMobile() then
+				Eternal:_AddDragBlacklist(Button)
 			end
 
-			Button.Name = CELINA_:_RandomString()
+			Button.Name = Eternal:_RandomString()
 			Button.Parent = Parent
 			Button.BackgroundTransparency = 1.000
 			Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5208,10 +5208,10 @@ local celinaHUB = (function()
 			Button.ClipsDescendants = false
 			Button.ZIndex = Zindex + 5
 
-			BlockLine.Name = CELINA_:_RandomString()
+			BlockLine.Name = Eternal:_RandomString()
 			BlockLine.Parent = Button
 			BlockLine.AnchorPoint = Vector2.new(0.5, 1)
-			BlockLine.BackgroundColor3 = CELINA_.Colors.LineColor
+			BlockLine.BackgroundColor3 = Eternal.Colors.LineColor
 			BlockLine.BackgroundTransparency = 0.500
 			BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			BlockLine.BorderSizePixel = 0
@@ -5219,14 +5219,14 @@ local celinaHUB = (function()
 			BlockLine.Size = UDim2.new(1, -26, 0, 1)
 			BlockLine.ZIndex = Zindex + 6
 
-			table.insert(CELINA_.Elements.LineColor, {
+			table.insert(Eternal.Elements.LineColor, {
 				Element = BlockLine,
 				Property = "BackgroundColor3",
 			})
 
 			Frame.Parent = Button
 			Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-			Frame.BackgroundColor3 = CELINA_.Colors.Highlight
+			Frame.BackgroundColor3 = Eternal.Colors.Highlight
 			Frame.BackgroundTransparency = 0
 			Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Frame.BorderSizePixel = 0
@@ -5234,16 +5234,16 @@ local celinaHUB = (function()
 			Frame.Size = UDim2.new(1, -15, 1, -5)
 			Frame.ZIndex = Zindex + 7
 
-			table.insert(CELINA_.Elements.Highlight, {
+			table.insert(Eternal.Elements.Highlight, {
 				Element = Frame,
 				Property = "BackgroundColor3",
 			})
 
-			UIStroke.Color = CELINA_.Colors.StrokeColor
+			UIStroke.Color = Eternal.Colors.StrokeColor
 			UIStroke.Thickness = 1.5
 			UIStroke.Parent = Frame
 
-			table.insert(CELINA_.Elements.StrokeColor, {
+			table.insert(Eternal.Elements.StrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
@@ -5263,7 +5263,7 @@ local celinaHUB = (function()
 			local GlowStroke = Instance.new("UIStroke")
 			GlowStroke.Parent = GlowWrap
 			GlowStroke.Thickness = 2
-			GlowStroke.Color = CELINA_.Colors.Highlight
+			GlowStroke.Color = Eternal.Colors.Highlight
 			local GlowGrad = Instance.new("UIGradient")
 			GlowGrad.Parent = GlowStroke
 			GlowGrad.Transparency = NumberSequence.new({
@@ -5286,7 +5286,7 @@ local celinaHUB = (function()
 			end)
 
 			local BtnGlow = Instance.new("Frame")
-			BtnGlow.Name = CELINA_:_RandomString()
+			BtnGlow.Name = Eternal:_RandomString()
 			BtnGlow.AnchorPoint = Vector2.new(0.5, 0.5)
 			BtnGlow.Position = UDim2.fromScale(0.5, 0.5)
 			BtnGlow.Size = UDim2.fromScale(1, 1)
@@ -5341,25 +5341,25 @@ local celinaHUB = (function()
 			TextLabel.ZIndex = Zindex + 9
 			TextLabel.Font = Enum.Font.GothamMedium
 			TextLabel.Text = Config.Name
-			TextLabel.TextColor3 = CELINA_.Colors.SwitchColor
+			TextLabel.TextColor3 = Eternal.Colors.SwitchColor
 			TextLabel.TextSize = 12.000
 			TextLabel.TextStrokeTransparency = 0.900
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = TextLabel,
 				Property = "TextColor3",
 			})
 
-			CELINA_:_Hover(Frame, function()
+			Eternal:_Hover(Frame, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(Frame, TweenInfo.new(0.1), {
+					Eternal:_Animation(Frame, TweenInfo.new(0.1), {
 						BackgroundColor3 = Color3.fromRGB(240, 80, 80),
 					})
 				end
 			end, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(Frame, TweenInfo.new(0.1), {
-						BackgroundColor3 = CELINA_.Colors.Highlight,
+					Eternal:_Animation(Frame, TweenInfo.new(0.1), {
+						BackgroundColor3 = Eternal.Colors.Highlight,
 					})
 				end
 			end)
@@ -5367,11 +5367,11 @@ local celinaHUB = (function()
 			local BtnScale = Instance.new("UIScale")
 			BtnScale.Parent = Frame
 
-			CELINA_:_Input(Frame, function()
-				CELINA_:_Animation(BtnScale, TweenInfo.new(0.05), { Scale = 0.95 })
+			Eternal:_Input(Frame, function()
+				Eternal:_Animation(BtnScale, TweenInfo.new(0.05), { Scale = 0.95 })
 				task.delay(0.05, function()
 					if BtnScale and BtnScale.Parent then
-						CELINA_:_Animation(BtnScale, TweenInfo.new(0.15, Enum.EasingStyle.Back, Enum.EasingDirection.Out), { Scale = 1 })
+						Eternal:_Animation(BtnScale, TweenInfo.new(0.15, Enum.EasingStyle.Back, Enum.EasingDirection.Out), { Scale = 1 })
 					end
 				end)
 				Config.Callback()
@@ -5399,36 +5399,36 @@ local celinaHUB = (function()
 					return
 				end
 				if bool then
-					CELINA_:_Animation(BlockLine, _TI_035_Lin, {
+					Eternal:_Animation(BlockLine, _TI_035_Lin, {
 						BackgroundTransparency = 0.500,
 					})
 
-					CELINA_:_Animation(Frame, _TI_035_Lin, {
+					Eternal:_Animation(Frame, _TI_035_Lin, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(UIStroke, _TI_035_Lin, {
+					Eternal:_Animation(UIStroke, _TI_035_Lin, {
 						Transparency = 0,
 					})
 
-					CELINA_:_Animation(TextLabel, _TI_035_Lin, {
+					Eternal:_Animation(TextLabel, _TI_035_Lin, {
 						TextStrokeTransparency = 0.900,
 						TextTransparency = 0,
 					})
 				else
-					CELINA_:_Animation(BlockLine, _TI_035_Lin, {
+					Eternal:_Animation(BlockLine, _TI_035_Lin, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(Frame, _TI_035_Lin, {
+					Eternal:_Animation(Frame, _TI_035_Lin, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(UIStroke, _TI_035_Lin, {
+					Eternal:_Animation(UIStroke, _TI_035_Lin, {
 						Transparency = 1,
 					})
 
-					CELINA_:_Animation(TextLabel, _TI_035_Lin, {
+					Eternal:_Animation(TextLabel, _TI_035_Lin, {
 						TextStrokeTransparency = 1,
 						TextTransparency = 1,
 					})
@@ -5449,7 +5449,7 @@ local celinaHUB = (function()
 
 		function Args:AddSlider(Config)
 			_renderYield()
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Name = "Slider",
 				Default = 50,
 				Min = 0,
@@ -5472,9 +5472,9 @@ local celinaHUB = (function()
 			local UIScale = Instance.new("UIScale")
 			local ValueText = Instance.new("TextLabel")
 
-			CELINA_:_AddDragBlacklist(Slider)
+			Eternal:_AddDragBlacklist(Slider)
 
-			Slider.Name = CELINA_:_RandomString()
+			Slider.Name = Eternal:_RandomString()
 			Slider.Parent = Parent
 			Slider.BackgroundTransparency = 1.000
 			Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5482,7 +5482,7 @@ local celinaHUB = (function()
 			Slider.Size = UDim2.new(1, -1, 0, 45)
 			Slider.ZIndex = Zindex + 1
 
-			BlockText.Name = CELINA_:_RandomString()
+			BlockText.Name = Eternal:_RandomString()
 			BlockText.Parent = Slider
 			BlockText.BackgroundTransparency = 1.000
 			BlockText.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5492,20 +5492,20 @@ local celinaHUB = (function()
 			BlockText.ZIndex = Zindex + 2
 			BlockText.Font = Enum.Font.GothamMedium
 			BlockText.Text = Config.Name
-			BlockText.TextColor3 = CELINA_.Colors.SwitchColor
+			BlockText.TextColor3 = Eternal.Colors.SwitchColor
 			BlockText.TextSize = 14.000
 			BlockText.TextTransparency = 0.100
 			BlockText.TextXAlignment = Enum.TextXAlignment.Left
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = BlockText,
 				Property = "TextColor3",
 			})
 
-			BlockLine.Name = CELINA_:_RandomString()
+			BlockLine.Name = Eternal:_RandomString()
 			BlockLine.Parent = Slider
 			BlockLine.AnchorPoint = Vector2.new(0.5, 1)
-			BlockLine.BackgroundColor3 = CELINA_.Colors.LineColor
+			BlockLine.BackgroundColor3 = Eternal.Colors.LineColor
 			BlockLine.BackgroundTransparency = 0.500
 			BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			BlockLine.BorderSizePixel = 0
@@ -5514,15 +5514,15 @@ local celinaHUB = (function()
 			BlockLine.ZIndex = Zindex + 2
 			BlockLine.Visible = EnabledLine or false
 
-			table.insert(CELINA_.Elements.LineColor, {
+			table.insert(Eternal.Elements.LineColor, {
 				Element = BlockLine,
 				Property = "BackgroundColor3",
 			})
 
-			SliderBar.Name = CELINA_:_RandomString()
+			SliderBar.Name = Eternal:_RandomString()
 			SliderBar.Parent = Slider
 			SliderBar.AnchorPoint = Vector2.new(0.5, 1)
-			SliderBar.BackgroundColor3 = CELINA_.Colors.DropColor
+			SliderBar.BackgroundColor3 = Eternal.Colors.DropColor
 			SliderBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SliderBar.BorderSizePixel = 0
 			SliderBar.ClipsDescendants = true
@@ -5530,15 +5530,15 @@ local celinaHUB = (function()
 			SliderBar.Size = UDim2.new(1, -25, 0, 10)
 			SliderBar.ZIndex = Zindex + 3
 
-			table.insert(CELINA_.Elements.DropColor, {
+			table.insert(Eternal.Elements.DropColor, {
 				Element = SliderBar,
 				Property = "BackgroundColor3",
 			})
 
-			UIStroke.Color = CELINA_.Colors.StrokeColor
+			UIStroke.Color = Eternal.Colors.StrokeColor
 			UIStroke.Parent = SliderBar
 
-			table.insert(CELINA_.Elements.StrokeColor, {
+			table.insert(Eternal.Elements.StrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
@@ -5546,10 +5546,10 @@ local celinaHUB = (function()
 			UICorner.CornerRadius = UDim.new(0, 6)
 			UICorner.Parent = SliderBar
 
-			SliderInput.Name = CELINA_:_RandomString()
+			SliderInput.Name = Eternal:_RandomString()
 			SliderInput.Parent = SliderBar
 			SliderInput.AnchorPoint = Vector2.new(0, 0.5)
-			SliderInput.BackgroundColor3 = CELINA_.Colors.Highlight
+			SliderInput.BackgroundColor3 = Eternal.Colors.Highlight
 			SliderInput.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SliderInput.BorderSizePixel = 0
 			SliderInput.Position = UDim2.new(0, 0, 0.5, 0)
@@ -5557,7 +5557,7 @@ local celinaHUB = (function()
 				UDim2.new(math.max((Config.Default - Config.Min) / (Config.Max - Config.Min), 0.045), 0, 1, 0)
 			SliderInput.ZIndex = Zindex + 4
 
-			table.insert(CELINA_.Elements.Highlight, {
+			table.insert(Eternal.Elements.Highlight, {
 				Element = SliderInput,
 				Property = "BackgroundColor3",
 			})
@@ -5567,7 +5567,7 @@ local celinaHUB = (function()
 
 			Frame.Parent = SliderInput
 			Frame.AnchorPoint = Vector2.new(1, 0.5)
-			Frame.BackgroundColor3 = CELINA_.Colors.SwitchColor
+			Frame.BackgroundColor3 = Eternal.Colors.SwitchColor
 			Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Frame.BorderSizePixel = 0
 			Frame.Position = UDim2.new(1, 5, 0.5, 0)
@@ -5576,7 +5576,7 @@ local celinaHUB = (function()
 			Frame.SizeConstraint = Enum.SizeConstraint.RelativeYY
 			Frame.ZIndex = Zindex + 6
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = Frame,
 				Property = "BackgroundColor3",
 			})
@@ -5587,7 +5587,7 @@ local celinaHUB = (function()
 			UIScale.Parent = Frame
 			UIScale.Scale = 1.300
 
-			ValueText.Name = CELINA_:_RandomString()
+			ValueText.Name = Eternal:_RandomString()
 			ValueText.Parent = Slider
 			ValueText.BackgroundTransparency = 1.000
 			ValueText.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5597,25 +5597,25 @@ local celinaHUB = (function()
 			ValueText.ZIndex = Zindex + 4
 			ValueText.Font = Enum.Font.GothamMedium
 			ValueText.Text = tostring(Config.Default) .. tostring(Config.Type)
-			ValueText.TextColor3 = CELINA_.Colors.SwitchColor
+			ValueText.TextColor3 = Eternal.Colors.SwitchColor
 			ValueText.TextSize = 12.000
 			ValueText.TextTransparency = 0.750
 			ValueText.TextXAlignment = Enum.TextXAlignment.Right
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = ValueText,
 				Property = "TextColor3",
 			})
 
-			CELINA_:_Hover(SliderBar, function()
+			Eternal:_Hover(SliderBar, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(ValueText, TweenInfo.new(0.2), {
+					Eternal:_Animation(ValueText, TweenInfo.new(0.2), {
 						TextTransparency = 0.2,
 					})
 				end
 			end, function()
 				if Signal:GetValue() then
-					CELINA_:_Animation(ValueText, TweenInfo.new(0.2), {
+					Eternal:_Animation(ValueText, TweenInfo.new(0.2), {
 						TextTransparency = 0.750,
 					})
 				end
@@ -5629,7 +5629,7 @@ local celinaHUB = (function()
 
 				local Main = ((Config.Max - Config.Min) * SizeScale) + Config.Min
 
-				local Value = CELINA_:_Rounding(Main, Config.Round)
+				local Value = Eternal:_Rounding(Main, Config.Round)
 
 				local PositionX = UDim2.fromScale(SizeScale, 1)
 
@@ -5663,7 +5663,7 @@ local celinaHUB = (function()
 						or Input.UserInputType == Enum.UserInputType.Touch
 					then
 						if UserInputService.TouchEnabled then
-							if not CELINA_:_IsMouseOverFrame(SliderBar) then
+							if not Eternal:_IsMouseOverFrame(SliderBar) then
 								IsHold = false
 							end
 						else
@@ -5679,7 +5679,7 @@ local celinaHUB = (function()
 							or Input.UserInputType == Enum.UserInputType.Touch
 						then
 							if UserInputService.TouchEnabled then
-								if not CELINA_:_IsMouseOverFrame(SliderBar) then
+								if not Eternal:_IsMouseOverFrame(SliderBar) then
 									IsHold = false
 								else
 									Update(Input)
@@ -5701,7 +5701,7 @@ local celinaHUB = (function()
 
 				ValueText.Text = tostring(Config.Default) .. tostring(Config.Type)
 
-				CELINA_:_Animation(SliderInput, _TI_035_Lin, {
+				Eternal:_Animation(SliderInput, _TI_035_Lin, {
 					Size = UDim2.new(
 						math.max((Config.Default - Config.Min) / (Config.Max - Config.Min), 0.045),
 						0,
@@ -5747,7 +5747,7 @@ local celinaHUB = (function()
 					return
 				end
 				if bool then
-					CELINA_:_Animation(SliderInput, _TI_035_Lin, {
+					Eternal:_Animation(SliderInput, _TI_035_Lin, {
 						Size = UDim2.new(
 							math.max((Config.Default - Config.Min) / (Config.Max - Config.Min), 0.045),
 							0,
@@ -5755,62 +5755,62 @@ local celinaHUB = (function()
 							0
 						),
 					})
-					CELINA_:_Animation(ValueText, Tween, {
+					Eternal:_Animation(ValueText, Tween, {
 						TextTransparency = 0.750,
 					})
 
-					CELINA_:_Animation(Frame, Tween, {
+					Eternal:_Animation(Frame, Tween, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(SliderInput, Tween, {
+					Eternal:_Animation(SliderInput, Tween, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(UIStroke, Tween, {
+					Eternal:_Animation(UIStroke, Tween, {
 						Transparency = 0,
 					})
 
-					CELINA_:_Animation(SliderBar, Tween, {
+					Eternal:_Animation(SliderBar, Tween, {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(BlockLine, Tween, {
+					Eternal:_Animation(BlockLine, Tween, {
 						BackgroundTransparency = 0.5,
 					})
 
-					CELINA_:_Animation(BlockText, Tween, {
+					Eternal:_Animation(BlockText, Tween, {
 						TextTransparency = 0.1,
 					})
 				else
-					CELINA_:_Animation(SliderInput, _TI_035_Lin, {
+					Eternal:_Animation(SliderInput, _TI_035_Lin, {
 						Size = UDim2.new(0, 0, 1, 0),
 					})
-					CELINA_:_Animation(ValueText, Tween, {
+					Eternal:_Animation(ValueText, Tween, {
 						TextTransparency = 1,
 					})
 
-					CELINA_:_Animation(Frame, Tween, {
+					Eternal:_Animation(Frame, Tween, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(SliderInput, Tween, {
+					Eternal:_Animation(SliderInput, Tween, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(UIStroke, Tween, {
+					Eternal:_Animation(UIStroke, Tween, {
 						Transparency = 1,
 					})
 
-					CELINA_:_Animation(SliderBar, Tween, {
+					Eternal:_Animation(SliderBar, Tween, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(BlockLine, Tween, {
+					Eternal:_Animation(BlockLine, Tween, {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(BlockText, Tween, {
+					Eternal:_Animation(BlockText, Tween, {
 						TextTransparency = 1,
 					})
 				end
@@ -5821,11 +5821,11 @@ local celinaHUB = (function()
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			if not DisableStackKeybind then
-				local AutoKeybind = CELINA_:_KeybindHandler(Slider, "Number", Args, Signal, Zindex, Config)
+				local AutoKeybind = Eternal:_KeybindHandler(Slider, "Number", Args, Signal, Zindex, Config)
 
 				Args.AutoKeybind = AutoKeybind
 			end
@@ -5835,7 +5835,7 @@ local celinaHUB = (function()
 
 		function Args:AddParagraph(Config)
 			_renderYield()
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Title = "Paragraph",
 				Content = "",
 				Center = false,
@@ -5846,11 +5846,11 @@ local celinaHUB = (function()
 			local BlockLine = Instance.new("Frame")
 			local DescriptionText = Instance.new("TextLabel")
 
-			if CELINA_:_IsMobile() then
-				CELINA_:_AddDragBlacklist(Paragraph)
+			if Eternal:_IsMobile() then
+				Eternal:_AddDragBlacklist(Paragraph)
 			end
 
-			Paragraph.Name = CELINA_:_RandomString()
+			Paragraph.Name = Eternal:_RandomString()
 			Paragraph.Parent = Parent
 			Paragraph.BackgroundTransparency = 1.000
 			Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5859,7 +5859,7 @@ local celinaHUB = (function()
 			Paragraph.ZIndex = Zindex + 2
 			Paragraph.ClipsDescendants = true
 
-			BlockText.Name = CELINA_:_RandomString()
+			BlockText.Name = Eternal:_RandomString()
 			BlockText.Parent = Paragraph
 			BlockText.AnchorPoint = Vector2.new(0, 0.5)
 			BlockText.BackgroundTransparency = 1.000
@@ -5870,21 +5870,21 @@ local celinaHUB = (function()
 			BlockText.ZIndex = Zindex + 3
 			BlockText.Font = Enum.Font.GothamMedium
 			BlockText.Text = Config.Title
-			BlockText.TextColor3 = CELINA_.Colors.SwitchColor
+			BlockText.TextColor3 = Eternal.Colors.SwitchColor
 			BlockText.TextSize = 14.000
 			BlockText.TextTransparency = 0.300
 			BlockText.TextXAlignment = Config.Center and Enum.TextXAlignment.Center or Enum.TextXAlignment.Left
 			BlockText.RichText = true
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = BlockText,
 				Property = "TextColor3",
 			})
 
-			BlockLine.Name = CELINA_:_RandomString()
+			BlockLine.Name = Eternal:_RandomString()
 			BlockLine.Parent = Paragraph
 			BlockLine.AnchorPoint = Vector2.new(0.5, 1)
-			BlockLine.BackgroundColor3 = CELINA_.Colors.LineColor
+			BlockLine.BackgroundColor3 = Eternal.Colors.LineColor
 			BlockLine.BackgroundTransparency = 0.500
 			BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			BlockLine.BorderSizePixel = 0
@@ -5892,13 +5892,13 @@ local celinaHUB = (function()
 			BlockLine.Size = UDim2.new(1, -26, 0, 1)
 			BlockLine.ZIndex = Zindex + 4
 
-			table.insert(CELINA_.Elements.LineColor, {
+			table.insert(Eternal.Elements.LineColor, {
 				Element = BlockLine,
 				Property = "BackgroundColor3",
 			})
 
 			DescriptionText.RichText = true
-			DescriptionText.Name = CELINA_:_RandomString()
+			DescriptionText.Name = Eternal:_RandomString()
 			DescriptionText.Parent = Paragraph
 			DescriptionText.BackgroundTransparency = 1.000
 			DescriptionText.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5908,13 +5908,13 @@ local celinaHUB = (function()
 			DescriptionText.ZIndex = Zindex + 5
 			DescriptionText.Font = Enum.Font.GothamMedium
 			DescriptionText.Text = Config.Content
-			DescriptionText.TextColor3 = CELINA_.Colors.SwitchColor
+			DescriptionText.TextColor3 = Eternal.Colors.SwitchColor
 			DescriptionText.TextSize = 13.000
 			DescriptionText.TextTransparency = 0.500
 			DescriptionText.TextXAlignment = Config.Center and Enum.TextXAlignment.Center or Enum.TextXAlignment.Left
 			DescriptionText.TextYAlignment = Enum.TextYAlignment.Top
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = DescriptionText,
 				Property = "TextColor3",
 			})
@@ -5934,7 +5934,7 @@ local celinaHUB = (function()
 					if _paraInit then
 						Paragraph.Size = UDim2.new(1, -1, 0, TitleScale.Y + Base)
 					else
-						CELINA_:_Animation(Paragraph, _TI_015, {
+						Eternal:_Animation(Paragraph, _TI_015, {
 							Size = UDim2.new(1, -1, 0, TitleScale.Y + Base),
 						})
 					end
@@ -5955,7 +5955,7 @@ local celinaHUB = (function()
 					if _paraInit then
 						Paragraph.Size = UDim2.new(1, -1, 0, (TitleScale.Y + ContentScale.Y) + Base)
 					else
-						CELINA_:_Animation(Paragraph, _TI_015, {
+						Eternal:_Animation(Paragraph, _TI_015, {
 							Size = UDim2.new(1, -1, 0, (TitleScale.Y + ContentScale.Y) + Base),
 						})
 					end
@@ -5993,27 +5993,27 @@ local celinaHUB = (function()
 					return
 				end
 				if bool then
-					CELINA_:_Animation(BlockText, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockText, TweenInfo.new(0.2), {
 						TextTransparency = 0.300,
 					})
 
-					CELINA_:_Animation(DescriptionText, TweenInfo.new(0.2), {
+					Eternal:_Animation(DescriptionText, TweenInfo.new(0.2), {
 						TextTransparency = 0.500,
 					})
 
-					CELINA_:_Animation(BlockLine, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockLine, TweenInfo.new(0.2), {
 						BackgroundTransparency = 0.500,
 					})
 				else
-					CELINA_:_Animation(BlockText, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockText, TweenInfo.new(0.2), {
 						TextTransparency = 1,
 					})
 
-					CELINA_:_Animation(DescriptionText, TweenInfo.new(0.2), {
+					Eternal:_Animation(DescriptionText, TweenInfo.new(0.2), {
 						TextTransparency = 1,
 					})
 
-					CELINA_:_Animation(BlockLine, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockLine, TweenInfo.new(0.2), {
 						BackgroundTransparency = 1,
 					})
 				end
@@ -6023,7 +6023,7 @@ local celinaHUB = (function()
 		end
 
 		function Args:AddTextBox(Config)
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Name = "TextBox",
 				Default = "",
 				Placeholder = "Placeholder",
@@ -6039,11 +6039,11 @@ local celinaHUB = (function()
 			local TextBox_2 = Instance.new("TextBox")
 			local BlockLine = Instance.new("Frame")
 
-			if CELINA_:_IsMobile() then
-				CELINA_:_AddDragBlacklist(TextBox)
+			if Eternal:_IsMobile() then
+				Eternal:_AddDragBlacklist(TextBox)
 			end
 
-			TextBox.Name = CELINA_:_RandomString()
+			TextBox.Name = Eternal:_RandomString()
 			TextBox.Parent = Parent
 			TextBox.BackgroundTransparency = 1.000
 			TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -6051,7 +6051,7 @@ local celinaHUB = (function()
 			TextBox.Size = UDim2.new(1, -1, 0, 30)
 			TextBox.ZIndex = Zindex + 1
 
-			BlockText.Name = CELINA_:_RandomString()
+			BlockText.Name = Eternal:_RandomString()
 			BlockText.Parent = TextBox
 			BlockText.AnchorPoint = Vector2.new(0, 0.5)
 			BlockText.BackgroundTransparency = 1.000
@@ -6062,35 +6062,35 @@ local celinaHUB = (function()
 			BlockText.ZIndex = Zindex + 2
 			BlockText.Font = Enum.Font.GothamMedium
 			BlockText.Text = Config.Name
-			BlockText.TextColor3 = CELINA_.Colors.SwitchColor
+			BlockText.TextColor3 = Eternal.Colors.SwitchColor
 			BlockText.TextSize = 14.000
 			BlockText.TextTransparency = 0.300
 			BlockText.TextXAlignment = Enum.TextXAlignment.Left
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = BlockText,
 				Property = "TextColor3",
 			})
 
-			LinkValues.Name = CELINA_:_RandomString()
+			LinkValues.Name = Eternal:_RandomString()
 			LinkValues.Parent = TextBox
 			LinkValues.AnchorPoint = Vector2.new(1, 0.540000021)
-			LinkValues.BackgroundColor3 = CELINA_.Colors.DropColor
+			LinkValues.BackgroundColor3 = Eternal.Colors.DropColor
 			LinkValues.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			LinkValues.BorderSizePixel = 0
 			LinkValues.Position = UDim2.new(1, -12, 0.5, 0)
 			LinkValues.Size = UDim2.new(0, 95, 0, 16)
 			LinkValues.ZIndex = Zindex + 3
 
-			table.insert(CELINA_.Elements.DropColor, {
+			table.insert(Eternal.Elements.DropColor, {
 				Element = LinkValues,
 				Property = "BackgroundColor3",
 			})
 
-			UIStroke.Color = CELINA_.Colors.StrokeColor
+			UIStroke.Color = Eternal.Colors.StrokeColor
 			UIStroke.Parent = LinkValues
 
-			table.insert(CELINA_.Elements.StrokeColor, {
+			table.insert(Eternal.Elements.StrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
@@ -6112,18 +6112,18 @@ local celinaHUB = (function()
 			TextBox_2.Font = Enum.Font.GothamMedium
 			TextBox_2.PlaceholderText = Config.Placeholder
 			TextBox_2.Text = Config.Default
-			TextBox_2.TextColor3 = CELINA_.Colors.SwitchColor
+			TextBox_2.TextColor3 = Eternal.Colors.SwitchColor
 			TextBox_2.TextSize = 11.000
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = TextBox_2,
 				Property = "TextColor3",
 			})
 
-			BlockLine.Name = CELINA_:_RandomString()
+			BlockLine.Name = Eternal:_RandomString()
 			BlockLine.Parent = TextBox
 			BlockLine.AnchorPoint = Vector2.new(0.5, 1)
-			BlockLine.BackgroundColor3 = CELINA_.Colors.LineColor
+			BlockLine.BackgroundColor3 = Eternal.Colors.LineColor
 			BlockLine.BackgroundTransparency = 0.500
 			BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			BlockLine.BorderSizePixel = 0
@@ -6131,7 +6131,7 @@ local celinaHUB = (function()
 			BlockLine.Size = UDim2.new(1, -26, 0, 1)
 			BlockLine.ZIndex = Zindex + 3
 
-			table.insert(CELINA_.Elements.LineColor, {
+			table.insert(Eternal.Elements.LineColor, {
 				Element = BlockLine,
 				Property = "BackgroundColor3",
 			})
@@ -6153,13 +6153,13 @@ local celinaHUB = (function()
 				local MainScale = ((scale.X > Base.X) and scale.X) or Base.X
 
 				local xp = pcall(function()
-					CELINA_:_Animation(LinkValues, _TI_025, {
+					Eternal:_Animation(LinkValues, _TI_025, {
 						Size = UDim2.fromOffset(math.clamp(MainScale + 7, Base.X, TextBox.AbsoluteSize.X / 2), 16),
 					})
 				end)
 
 				if not xp then
-					CELINA_:_Animation(LinkValues, _TI_025, {
+					Eternal:_Animation(LinkValues, _TI_025, {
 						Size = UDim2.fromOffset(MainScale + 7, 16),
 					})
 				end
@@ -6241,35 +6241,35 @@ local celinaHUB = (function()
 					return
 				end
 				if bool then
-					CELINA_:_Animation(BlockText, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockText, TweenInfo.new(0.2), {
 						TextTransparency = 0.3,
 					})
 
-					CELINA_:_Animation(BlockLine, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockLine, TweenInfo.new(0.2), {
 						BackgroundTransparency = 0.5,
 					})
 
-					CELINA_:_Animation(UIStroke, TweenInfo.new(0.2), {
+					Eternal:_Animation(UIStroke, TweenInfo.new(0.2), {
 						Transparency = 0,
 					})
 
-					CELINA_:_Animation(LinkValues, TweenInfo.new(0.2), {
+					Eternal:_Animation(LinkValues, TweenInfo.new(0.2), {
 						BackgroundTransparency = 0,
 					})
 				else
-					CELINA_:_Animation(BlockText, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockText, TweenInfo.new(0.2), {
 						TextTransparency = 1,
 					})
 
-					CELINA_:_Animation(BlockLine, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockLine, TweenInfo.new(0.2), {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(UIStroke, TweenInfo.new(0.2), {
+					Eternal:_Animation(UIStroke, TweenInfo.new(0.2), {
 						Transparency = 1,
 					})
 
-					CELINA_:_Animation(LinkValues, TweenInfo.new(0.2), {
+					Eternal:_Animation(LinkValues, TweenInfo.new(0.2), {
 						BackgroundTransparency = 1,
 					})
 				end
@@ -6280,7 +6280,7 @@ local celinaHUB = (function()
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			return Args
@@ -6288,7 +6288,7 @@ local celinaHUB = (function()
 
 		function Args:AddDropdown(Config)
 			_renderYield()
-			Config = CELINA_.__CONFIG(Config, {
+			Config = Eternal.__CONFIG(Config, {
 				Name = "Dropdown",
 				Default = nil,
 				Values = { "Item 1", "Item 2", "Item 3" },
@@ -6341,7 +6341,7 @@ local celinaHUB = (function()
 			local ValueText = Instance.new("TextLabel")
 			local MainButton = Instance.new("ImageButton")
 
-			Dropdown.Name = CELINA_:_RandomString()
+			Dropdown.Name = Eternal:_RandomString()
 			Dropdown.Parent = Parent
 			Dropdown.BackgroundTransparency = 1.000
 			Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -6349,7 +6349,7 @@ local celinaHUB = (function()
 			Dropdown.Size = UDim2.new(1, -1, 0, 55)
 			Dropdown.ZIndex = Zindex + 2
 
-			BlockText.Name = CELINA_:_RandomString()
+			BlockText.Name = Eternal:_RandomString()
 			BlockText.Parent = Dropdown
 			BlockText.BackgroundTransparency = 1.000
 			BlockText.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -6359,7 +6359,7 @@ local celinaHUB = (function()
 			BlockText.ZIndex = Zindex + 3
 			BlockText.Font = Enum.Font.GothamMedium
 			BlockText.Text = Config.Name
-			BlockText.TextColor3 = CELINA_.Colors.SwitchColor
+			BlockText.TextColor3 = Eternal.Colors.SwitchColor
 			BlockText.TextSize = 14.000
 			BlockText.TextTransparency = 0.100
 			BlockText.TextXAlignment = Enum.TextXAlignment.Left
@@ -6368,15 +6368,15 @@ local celinaHUB = (function()
 				Dropdown.Size = UDim2.new(1, -1, 0, 25)
 			end
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = BlockText,
 				Property = "TextColor3",
 			})
 
-			BlockLine.Name = CELINA_:_RandomString()
+			BlockLine.Name = Eternal:_RandomString()
 			BlockLine.Parent = Dropdown
 			BlockLine.AnchorPoint = Vector2.new(0.5, 1)
-			BlockLine.BackgroundColor3 = CELINA_.Colors.LineColor
+			BlockLine.BackgroundColor3 = Eternal.Colors.LineColor
 			BlockLine.BackgroundTransparency = 0.500
 			BlockLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			BlockLine.BorderSizePixel = 0
@@ -6384,12 +6384,12 @@ local celinaHUB = (function()
 			BlockLine.Size = UDim2.new(1, -26, 0, 1)
 			BlockLine.ZIndex = Zindex + 3
 
-			table.insert(CELINA_.Elements.LineColor, {
+			table.insert(Eternal.Elements.LineColor, {
 				Element = BlockLine,
 				Property = "BackgroundColor3",
 			})
 
-			LinkValues.Name = CELINA_:_RandomString()
+			LinkValues.Name = Eternal:_RandomString()
 			LinkValues.Parent = Dropdown
 			LinkValues.AnchorPoint = Vector2.new(1, 0.540000021)
 			LinkValues.BackgroundTransparency = 1.000
@@ -6406,10 +6406,10 @@ local celinaHUB = (function()
 			UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 			UIListLayout.Padding = UDim.new(0, 8)
 
-			ValueItems.Name = CELINA_:_RandomString()
+			ValueItems.Name = Eternal:_RandomString()
 			ValueItems.Parent = Dropdown
 			ValueItems.AnchorPoint = Vector2.new(0.5, 1)
-			ValueItems.BackgroundColor3 = CELINA_.Colors.DropColor
+			ValueItems.BackgroundColor3 = Eternal.Colors.DropColor
 			ValueItems.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ValueItems.BorderSizePixel = 0
 			ValueItems.ClipsDescendants = true
@@ -6417,15 +6417,15 @@ local celinaHUB = (function()
 			ValueItems.Size = UDim2.new(1, -25, 0, 18)
 			ValueItems.ZIndex = Zindex + 5
 
-			table.insert(CELINA_.Elements.DropColor, {
+			table.insert(Eternal.Elements.DropColor, {
 				Element = ValueItems,
 				Property = "BackgroundColor3",
 			})
 
-			UIStroke.Color = CELINA_.Colors.StrokeColor
+			UIStroke.Color = Eternal.Colors.StrokeColor
 			UIStroke.Parent = ValueItems
 
-			table.insert(CELINA_.Elements.StrokeColor, {
+			table.insert(Eternal.Elements.StrokeColor, {
 				Element = UIStroke,
 				Property = "Color",
 			})
@@ -6433,7 +6433,7 @@ local celinaHUB = (function()
 			UICorner.CornerRadius = UDim.new(0, 3)
 			UICorner.Parent = ValueItems
 
-			ValueText.Name = CELINA_:_RandomString()
+			ValueText.Name = Eternal:_RandomString()
 			ValueText.Parent = ValueItems
 			ValueText.AnchorPoint = Vector2.new(0.5, 0.5)
 			ValueText.BackgroundTransparency = 1.000
@@ -6444,16 +6444,16 @@ local celinaHUB = (function()
 			ValueText.ZIndex = Zindex + 8
 			ValueText.Font = Enum.Font.Gotham
 			ValueText.Text = DaTabarser(Config.Default)
-			ValueText.TextColor3 = CELINA_.Colors.SwitchColor
+			ValueText.TextColor3 = Eternal.Colors.SwitchColor
 			ValueText.TextSize = 11.000
 			ValueText.TextXAlignment = Enum.TextXAlignment.Left
 
-			table.insert(CELINA_.Elements.SwitchColor, {
+			table.insert(Eternal.Elements.SwitchColor, {
 				Element = ValueText,
 				Property = "TextColor3",
 			})
 
-			MainButton.Name = CELINA_:_RandomString()
+			MainButton.Name = Eternal:_RandomString()
 			MainButton.Parent = ValueItems
 			MainButton.AnchorPoint = Vector2.new(1, 0.5)
 			MainButton.BackgroundTransparency = 1.000
@@ -6462,22 +6462,22 @@ local celinaHUB = (function()
 			MainButton.Position = UDim2.new(1, -5, 0.5, 0)
 			MainButton.Size = UDim2.new(0, 13, 0, 13)
 			MainButton.ZIndex = Zindex + 5
-			MainButton.Image = CELINA_:CacheImage("rbxassetid://109535175596957")
+			MainButton.Image = Eternal:CacheImage("rbxassetid://109535175596957")
 
-			CELINA_:_Hover(ValueItems, function()
-				CELINA_:_Animation(ValueItems, _TI_030, {
-					BackgroundColor3 = CELINA_.Colors.MouseEnter,
+			Eternal:_Hover(ValueItems, function()
+				Eternal:_Animation(ValueItems, _TI_030, {
+					BackgroundColor3 = Eternal.Colors.MouseEnter,
 				})
 			end, function()
-				CELINA_:_Animation(ValueItems, _TI_030, {
-					BackgroundColor3 = CELINA_.Colors.DropColor,
+				Eternal:_Animation(ValueItems, _TI_030, {
+					BackgroundColor3 = Eternal.Colors.DropColor,
 				})
 			end)
 
 			local repi
-			local Button = CELINA_:_Input(ValueItems)
+			local Button = Eternal:_Input(ValueItems)
 
-			repi = CELINA_:_LoadDropdown(Button, function(value)
+			repi = Eternal:_LoadDropdown(Button, function(value)
 				Config.Default = value
 
 				repi:SetData(Config.Default, Config.Values, Config.Multi, false)
@@ -6490,11 +6490,11 @@ local celinaHUB = (function()
 
 			repi.EventOut:Connect(function(v)
 				if v then
-					CELINA_:_Animation(MainButton, TweenInfo.new(0.2), {
+					Eternal:_Animation(MainButton, TweenInfo.new(0.2), {
 						Rotation = -180,
 					})
 				else
-					CELINA_:_Animation(MainButton, TweenInfo.new(0.2), {
+					Eternal:_Animation(MainButton, TweenInfo.new(0.2), {
 						Rotation = 0,
 					})
 				end
@@ -6553,59 +6553,59 @@ local celinaHUB = (function()
 					return
 				end
 				if bool then
-					CELINA_:_Animation(BlockText, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockText, TweenInfo.new(0.2), {
 						TextTransparency = 0.100,
 					})
 
-					CELINA_:_Animation(BlockLine, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockLine, TweenInfo.new(0.2), {
 						BackgroundTransparency = 0.100,
 					})
 
-					CELINA_:_Animation(ValueItems, TweenInfo.new(0.2), {
+					Eternal:_Animation(ValueItems, TweenInfo.new(0.2), {
 						BackgroundTransparency = 0,
 					})
 
-					CELINA_:_Animation(UIStroke, TweenInfo.new(0.2), {
+					Eternal:_Animation(UIStroke, TweenInfo.new(0.2), {
 						Transparency = 0,
 					})
 
-					CELINA_:_Animation(ValueText, TweenInfo.new(0.32), {
+					Eternal:_Animation(ValueText, TweenInfo.new(0.32), {
 						TextTransparency = 0,
 					})
 
-					CELINA_:_Animation(MainButton, TweenInfo.new(0.2), {
+					Eternal:_Animation(MainButton, TweenInfo.new(0.2), {
 						ImageTransparency = 0,
 					})
 				else
-					CELINA_:_Animation(BlockText, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockText, TweenInfo.new(0.2), {
 						TextTransparency = 1,
 					})
 
-					CELINA_:_Animation(BlockLine, TweenInfo.new(0.2), {
+					Eternal:_Animation(BlockLine, TweenInfo.new(0.2), {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(ValueItems, TweenInfo.new(0.2), {
+					Eternal:_Animation(ValueItems, TweenInfo.new(0.2), {
 						BackgroundTransparency = 1,
 					})
 
-					CELINA_:_Animation(UIStroke, TweenInfo.new(0.2), {
+					Eternal:_Animation(UIStroke, TweenInfo.new(0.2), {
 						Transparency = 1,
 					})
 
-					CELINA_:_Animation(ValueText, TweenInfo.new(0.2), {
+					Eternal:_Animation(ValueText, TweenInfo.new(0.2), {
 						TextTransparency = 1,
 					})
 
-					CELINA_:_Animation(MainButton, TweenInfo.new(0.2), {
+					Eternal:_Animation(MainButton, TweenInfo.new(0.2), {
 						ImageTransparency = 1,
 					})
 				end
 			end)
 
-			Args.Link = CELINA_:_LoadOption({
+			Args.Link = Eternal:_LoadOption({
 				AddLink = function(self, Name, Default)
-					return CELINA_:_AddLinkValue(Name, Default, LinkValues, LinkValues, {
+					return Eternal:_AddLinkValue(Name, Default, LinkValues, LinkValues, {
 						Tween = TweenInfo.new(0.2),
 					}, Signal)
 				end,
@@ -6617,7 +6617,7 @@ local celinaHUB = (function()
 			end
 
 			if Config.Flag then
-				CELINA_.Flags[Config.Flag] = Args
+				Eternal.Flags[Config.Flag] = Args
 			end
 
 			return Args
@@ -6627,13 +6627,13 @@ local celinaHUB = (function()
 		return Args
 	end
 
-	function CELINA_:GetTheme()
-		return CELINA_.Colors
+	function Eternal:GetTheme()
+		return Eternal.Colors
 	end
 
-	function CELINA_:SetTheme(name)
+	function Eternal:SetTheme(name)
 		if name == "Emerald" then
-			CELINA_.Colors = {
+			Eternal.Colors = {
 				["BGDBColor"] = Color3.new(0.0429964, 0.110345, 0.0727226),
 				["BlockBackground"] = Color3.new(0.159287, 0.234483, 0.201811),
 				["BlockColor"] = Color3.new(0, 0.137931, 0.0951249),
@@ -6648,7 +6648,7 @@ local celinaHUB = (function()
 				HighStrokeColor = Color3.new(0, 0.241379, 0.186445),
 			}
 		elseif name == "Default" then
-			CELINA_.Colors = {
+			Eternal.Colors = {
 				Highlight = Color3.fromRGB(220, 60, 60),
 				Toggle = Color3.fromRGB(220, 60, 60),
 				Risky = Color3.fromRGB(251, 255, 39),
@@ -6663,7 +6663,7 @@ local celinaHUB = (function()
 				HighStrokeColor = Color3.fromRGB(55, 56, 63),
 			}
 		elseif name == "Midnight" then
-			CELINA_.Colors = {
+			Eternal.Colors = {
 				["BGDBColor"] = Color3.new(0.0393817, 0.0754204, 0.165517),
 				["BlockBackground"] = Color3.new(0, 0.0618311, 0.172414),
 				["BlockColor"] = Color3.new(0, 0.0172414, 0.103448),
@@ -6678,7 +6678,7 @@ local celinaHUB = (function()
 				["Toggle"] = Color3.new(0.054902, 0.463935, 0.835294),
 			}
 		elseif name == "Velvet" then
-			CELINA_.Colors = {
+			Eternal.Colors = {
 				["BGDBColor"] = Color3.new(0.0459068, 0.030321, 0.117241),
 				["BlockBackground"] = Color3.new(0.156272, 0.119596, 0.324138),
 				["BlockColor"] = Color3.new(0.0948428, 0.0576457, 0.165517),
@@ -6693,7 +6693,7 @@ local celinaHUB = (function()
 				["Toggle"] = Color3.new(0.835294, 0.054902, 0.248654),
 			}
 		elseif name == "Bubblegum" then
-			CELINA_.Colors = {
+			Eternal.Colors = {
 				["BGDBColor"] = Color3.fromRGB(145, 55, 105),
 				["BlockBackground"] = Color3.fromRGB(165, 75, 125),
 				["BlockColor"] = Color3.fromRGB(155, 65, 115),
@@ -6709,125 +6709,125 @@ local celinaHUB = (function()
 			}
 		end
 
-		CELINA_:RefreshCurrentColor()
+		Eternal:RefreshCurrentColor()
 	end
 
-	function CELINA_:RefreshCurrentColor()
-		for i, v in next, CELINA_.Elements.Highlight do
+	function Eternal:RefreshCurrentColor()
+		for i, v in next, Eternal.Elements.Highlight do
 			if v.Element and v.Property then
-				v.Element[v.Property] = CELINA_.Colors.Highlight
+				v.Element[v.Property] = Eternal.Colors.Highlight
 			end
 		end
 
-		for i, v in next, CELINA_.Elements do
+		for i, v in next, Eternal.Elements do
 			if v.Element and v.Property and v.Element:GetAttribute("Enabled") then
-				v.Element[v.Property] = CELINA_.Colors.Highlight
+				v.Element[v.Property] = Eternal.Colors.Highlight
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.Risky do
+		for i, v in next, Eternal.Elements.Risky do
 			if v.Element and v.Property then
-				v.Element[v.Property] = CELINA_.Colors.Risky
+				v.Element[v.Property] = Eternal.Colors.Risky
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.BlockColor do
+		for i, v in next, Eternal.Elements.BlockColor do
 			if v.Element and v.Property then
-				v.Element[v.Property] = CELINA_.Colors.BlockColor
+				v.Element[v.Property] = Eternal.Colors.BlockColor
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.BGDBColor do
+		for i, v in next, Eternal.Elements.BGDBColor do
 			if v.Element and v.Property then
-				v.Element[v.Property] = CELINA_.Colors.BGDBColor
+				v.Element[v.Property] = Eternal.Colors.BGDBColor
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.StrokeColor do
+		for i, v in next, Eternal.Elements.StrokeColor do
 			if v.Element and v.Property then
-				v.Element[v.Property] = CELINA_.Colors.StrokeColor
+				v.Element[v.Property] = Eternal.Colors.StrokeColor
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.SwitchColor do
-			if v.Element and v.Property and v.Element[v.Property] ~= CELINA_.Colors.MouseEnter then
-				v.Element[v.Property] = CELINA_.Colors.SwitchColor
+		for i, v in next, Eternal.Elements.SwitchColor do
+			if v.Element and v.Property and v.Element[v.Property] ~= Eternal.Colors.MouseEnter then
+				v.Element[v.Property] = Eternal.Colors.SwitchColor
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.BlockBackground do
+		for i, v in next, Eternal.Elements.BlockBackground do
 			if v.Element and v.Property and v.Element[v.Property] then
-				v.Element[v.Property] = CELINA_.Colors.BlockBackground
+				v.Element[v.Property] = Eternal.Colors.BlockBackground
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.DropColor do
+		for i, v in next, Eternal.Elements.DropColor do
 			if v.Element and v.Property then
 				if v.Element:GetAttribute("Enabled") then
-					v.Element[v.Property] = CELINA_.Colors.Toggle
+					v.Element[v.Property] = Eternal.Colors.Toggle
 				else
-					v.Element[v.Property] = CELINA_.Colors.DropColor
+					v.Element[v.Property] = Eternal.Colors.DropColor
 				end
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.LineColor do
+		for i, v in next, Eternal.Elements.LineColor do
 			if v.Element and v.Property then
-				v.Element[v.Property] = CELINA_.Colors.LineColor
+				v.Element[v.Property] = Eternal.Colors.LineColor
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.HighStrokeColor do
+		for i, v in next, Eternal.Elements.HighStrokeColor do
 			if v.Element and v.Property then
-				v.Element[v.Property] = CELINA_.Colors.HighStrokeColor
+				v.Element[v.Property] = Eternal.Colors.HighStrokeColor
 			end
 		end
 
-		for i, v in next, CELINA_.Elements.Toggle do
+		for i, v in next, Eternal.Elements.Toggle do
 			if v.Element and v.Property then
-				v.Element[v.Property] = CELINA_.Colors.Toggle
+				v.Element[v.Property] = Eternal.Colors.Toggle
 			end
 		end
 	end
 
-	function CELINA_:ChangeHighlightColor(NewColor)
+	function Eternal:ChangeHighlightColor(NewColor)
 		local H, S, V = NewColor:ToHSV()
 
-		CELINA_.Colors.Highlight = NewColor
-		CELINA_.Colors.Toggle = Color3.fromHSV(H, S, V - 0.2)
+		Eternal.Colors.Highlight = NewColor
+		Eternal.Colors.Toggle = Color3.fromHSV(H, S, V - 0.2)
 
-		for i, v in next, CELINA_.Elements.Highlight do
+		for i, v in next, Eternal.Elements.Highlight do
 			if v.Element and v.Property then
 				v.Element[v.Property] = NewColor
 			end
 		end
 
-		for i, v in next, CELINA_.Elements do
+		for i, v in next, Eternal.Elements do
 			if v.Element and v.Property and v.Element:GetAttribute("Enabled") then
 				v.Element[v.Property] = NewColor
 			end
 		end
 	end
 
-	function CELINA_.new(Config)
+	function Eternal.new(Config)
 		if not Config.Scale then
-			if CELINA_:_IsMobile() then
-				Config.Scale = CELINA_.Scale.Mobile
+			if Eternal:_IsMobile() then
+				Config.Scale = Eternal.Scale.Mobile
 			else
-				Config.Scale = CELINA_.Scale.Window
+				Config.Scale = Eternal.Scale.Window
 			end
 		end
 
-		Config = CELINA_.__CONFIG(Config, {
-			Name = "CELINA_",
+		Config = Eternal.__CONFIG(Config, {
+			Name = "Eternal",
 			Keybind = "Insert",
-			Logo = CELINA_.Logo,
-			Scale = CELINA_.Scale.Window,
+			Logo = Eternal.Logo,
+			Scale = Eternal.Scale.Window,
 			TextSize = 15,
 		})
 
-		local TabHover = CELINA_.__SIGNAL(false)
-		local WindowOpen = CELINA_.__SIGNAL(true)
+		local TabHover = Eternal.__SIGNAL(false)
+		local WindowOpen = Eternal.__SIGNAL(true)
 		local WindowArgs = {
 			SelectedTab = nil,
 			Tabs = {},
@@ -6836,17 +6836,17 @@ local celinaHUB = (function()
 			AlwayShowTab = false,
 			THREADS = {},
 			PerformanceMode = false,
-			Notify = CELINA_.newNotify(),
+			Notify = Eternal.newNotify(),
 		}
 
 		WindowArgs.Username = LocalPlayer.Name
 
-		if CELINA_:_IsMobile() then
+		if Eternal:_IsMobile() then
 			WindowArgs.AlwayShowTab = true
 		end
 
-		local _lib = CELINA_
-		local CELINA_ = Instance.new("ScreenGui")
+		local _lib = Eternal
+		local Eternal = Instance.new("ScreenGui")
 		local MainFrame = Instance.new("Frame")
 		local UICorner = Instance.new("UICorner")
 		local TabFrame = Instance.new("Frame")
@@ -6867,22 +6867,22 @@ local celinaHUB = (function()
 		local ExpireText = Instance.new("TextLabel")
 		local TabMainFrame = Instance.new("Frame")
 
-		_lib:_DrawKeybinds(CELINA_)
+		_lib:_DrawKeybinds(Eternal)
 
 		UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 			TabButtonScrollingFrame.CanvasSize = UDim2.fromOffset(0, UIListLayout.AbsoluteContentSize.Y)
 		end)
 
-		CELINA_.Name = "u?name=CELINA__?" .. _lib:_RandomString()
-		CELINA_.ResetOnSpawn = false
-		CELINA_.IgnoreGuiInset = true
-		CELINA_.ZIndexBehavior = Enum.ZIndexBehavior.Global
-		CELINA_.Parent = CoreGui
+		Eternal.Name = "u?name=Eternal_?" .. _lib:_RandomString()
+		Eternal.ResetOnSpawn = false
+		Eternal.IgnoreGuiInset = true
+		Eternal.ZIndexBehavior = Enum.ZIndexBehavior.Global
+		Eternal.Parent = CoreGui
 
-		_lib.ProtectGui(CELINA_)
+		_lib.ProtectGui(Eternal)
 
 		local _guiAlive = true
-		local _guiRef = CELINA_
+		local _guiRef = Eternal
 
 
 		task.spawn(function()
@@ -6935,13 +6935,13 @@ local celinaHUB = (function()
 			end
 		end)
 
-		WindowArgs.Root = CELINA_
+		WindowArgs.Root = Eternal
 
-		table.insert(_lib.Windows, CELINA_)
+		table.insert(_lib.Windows, Eternal)
 
 		MainFrame.Active = true
 		MainFrame.Name = _lib:_RandomString()
-		MainFrame.Parent = CELINA_
+		MainFrame.Parent = Eternal
 		MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 		MainFrame.BackgroundColor3 = _lib.Colors.BGDBColor
 
@@ -6956,7 +6956,7 @@ local celinaHUB = (function()
 		MainFrame.Size = Config.Scale
 		MainFrame.ZIndex = 4
 
-		CELINA_.Enabled = false
+		Eternal.Enabled = false
 
 		MainFrame:GetPropertyChangedSignal("BackgroundTransparency"):Connect(function()
 			if MainFrame.BackgroundTransparency > 0.9 then
@@ -7431,7 +7431,7 @@ local celinaHUB = (function()
 			local ImageLabel = Instance.new("ImageLabel")
 
 			UserSettings.Name = _lib:_RandomString()
-			UserSettings.Parent = CELINA_
+			UserSettings.Parent = Eternal
 			UserSettings.BackgroundColor3 = _lib.Colors.BGDBColor
 			UserSettings.BackgroundTransparency = 1
 			UserSettings.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -7583,7 +7583,7 @@ local celinaHUB = (function()
 		end
 
 		function WindowArgs:SetVisible(bool)
-			CELINA_.Enabled = bool
+			Eternal.Enabled = bool
 		end
 
 		function WindowArgs:DrawCategory(config)
@@ -10038,7 +10038,7 @@ local celinaHUB = (function()
 			local ImageLabel = Instance.new("ImageLabel")
 
 			CloseWindow.Name = _lib:_RandomString()
-			CloseWindow.Parent = CELINA_
+			CloseWindow.Parent = Eternal
 			CloseWindow.AnchorPoint = Vector2.new(0, 1)
 			CloseWindow.BackgroundColor3 = _lib.Colors.BGDBColor
 
@@ -10112,7 +10112,7 @@ local celinaHUB = (function()
 				local UIListLayout = Instance.new("UIListLayout")
 
 				Watermark.Name = _lib:_RandomString()
-				Watermark.Parent = CELINA_
+				Watermark.Parent = Eternal
 				Watermark.AnchorPoint = Vector2.new(1, 0)
 				Watermark.BackgroundColor3 = _lib.Colors.BGDBColor
 
@@ -10434,7 +10434,7 @@ local celinaHUB = (function()
 			BlurElement.Active = true
 
 			task.spawn(function()
-				while not CELINA_.Enabled do task.wait(0.1) end
+				while not Eternal.Enabled do task.wait(0.1) end
 				_lib:_Blur(BlurElement, WindowOpen)
 			end)
 
@@ -10593,18 +10593,18 @@ local celinaHUB = (function()
 		return WindowArgs
 	end
 
-	function CELINA_:GetDate()
+	function Eternal:GetDate()
 		return DateTime.now():FormatLocalTime("DD/MM/YYYY", "en-us")
 	end
 
-	function CELINA_:GetTimeNow()
+	function Eternal:GetTimeNow()
 		return DateTime.now():FormatLocalTime("HH:mm:ss", "en-us")
 	end
 
-	function CELINA_:GetConfig(Type)
+	function Eternal:GetConfig(Type)
 		local ConfigFlags = {}
 
-		for i, v in next, CELINA_.Flags do
+		for i, v in next, Eternal.Flags do
 			local Value = v:GetValue()
 			local Suf = {}
 
@@ -10648,15 +10648,15 @@ local celinaHUB = (function()
 		return ConfigFlags
 	end
 
-	function CELINA_:_Path(...)
+	function Eternal:_Path(...)
 		local args = { ... }
 
 		return table.concat(args, "/")
 	end
 
-	function CELINA_:ConfigManager(ConfigManager): ConfigFunctions
-		ConfigManager = CELINA_.__CONFIG(ConfigManager, {
-			Directory = "CELINA_",
+	function Eternal:ConfigManager(ConfigManager): ConfigFunctions
+		ConfigManager = Eternal.__CONFIG(ConfigManager, {
+			Directory = "Eternal",
 			Config = "Software",
 		})
 
@@ -10664,47 +10664,47 @@ local celinaHUB = (function()
 			makefolder(ConfigManager.Directory)
 		end
 
-		if not isfolder(CELINA_:_Path(ConfigManager.Directory, ConfigManager.Config)) then
-			makefolder(CELINA_:_Path(ConfigManager.Directory, ConfigManager.Config))
+		if not isfolder(Eternal:_Path(ConfigManager.Directory, ConfigManager.Config)) then
+			makefolder(Eternal:_Path(ConfigManager.Directory, ConfigManager.Config))
 		end
 
 		local Args = {
-			Directory = CELINA_:_Path(ConfigManager.Directory, ConfigManager.Config),
+			Directory = Eternal:_Path(ConfigManager.Directory, ConfigManager.Config),
 			EnableNotify = false,
 		}
 
-		local notify = CELINA_.newNotify()
+		local notify = Eternal.newNotify()
 
 		function Args:WriteConfig(Config)
-			Config = CELINA_.__CONFIG(Config, {
-				Name = CELINA_:_RandomString(),
+			Config = Eternal.__CONFIG(Config, {
+				Name = Eternal:_RandomString(),
 				Author = LocalPlayer.Name,
 			})
 
-			local Flags = CELINA_:GetConfig("MK")
+			local Flags = Eternal:GetConfig("MK")
 
 			Flags["__INFORMATION"] = {
 				Type = "Information",
 				Author = Config.Author,
 				Name = Config.Name,
-				CreatedDate = CELINA_:GetDate(),
+				CreatedDate = Eternal:GetDate(),
 			}
 
 			if Args.EnableNotify then
 				notify.new({
 					Title = "Configs",
-					Icon = CELINA_:_GetIcon("settings"),
+					Icon = Eternal:_GetIcon("settings"),
 					Content = 'Create config "' .. Config.Name .. '"',
 				})
 			end
 
-			writefile(CELINA_:_Path(Args.Directory, Config.Name), HttpService:JSONEncode(Flags))
+			writefile(Eternal:_Path(Args.Directory, Config.Name), HttpService:JSONEncode(Flags))
 		end
 
 		function Args:LoadConfigFromString(str)
 			local decoded = HttpService:JSONDecode(str)
 
-			local Flags = CELINA_:GetConfig("KV")
+			local Flags = Eternal:GetConfig("KV")
 
 			for i, v in next, decoded do
 				if v and v.Flag then
@@ -10726,11 +10726,11 @@ local celinaHUB = (function()
 		end
 
 		function Args:GetCurrentConfig()
-			return CELINA_:GetConfig("MK")
+			return Eternal:GetConfig("MK")
 		end
 
 		function Args:ReadInfo(ConfigName)
-			local _path = CELINA_:_Path(Args.Directory, ConfigName)
+			local _path = Eternal:_Path(Args.Directory, ConfigName)
 
 			if isfile(_path) then
 				local info = readfile(_path)
@@ -10772,12 +10772,12 @@ local celinaHUB = (function()
 		end
 
 		function Args:DeleteConfig(ConfigName)
-			local _path = CELINA_:_Path(Args.Directory, ConfigName)
+			local _path = Eternal:_Path(Args.Directory, ConfigName)
 
 			if Args.EnableNotify then
 				notify.new({
 					Title = "Configs",
-					Icon = CELINA_:_GetIcon("settings"),
+					Icon = Eternal:_GetIcon("settings"),
 					Content = 'Delete config "' .. ConfigName .. '"',
 				})
 			end
@@ -10792,19 +10792,19 @@ local celinaHUB = (function()
 		end
 
 		function Args:LoadConfig(ConfigName)
-			local _path = CELINA_:_Path(Args.Directory, ConfigName)
+			local _path = Eternal:_Path(Args.Directory, ConfigName)
 
 			if isfile(_path) then
 				local info = readfile(_path)
 
 				local decoded = HttpService:JSONDecode(info)
 
-				local Flags = CELINA_:GetConfig("KV")
+				local Flags = Eternal:GetConfig("KV")
 
 				if Args.EnableNotify then
 					notify.new({
 						Title = "Configs",
-						Icon = CELINA_:_GetIcon("settings"),
+						Icon = Eternal:_GetIcon("settings"),
 						Content = 'Load config "' .. ConfigName .. '"',
 					})
 				end
@@ -10838,23 +10838,23 @@ local celinaHUB = (function()
 		return Args
 	end
 
-	function CELINA_:Loader(IconId, Duration)
-		local _lib = CELINA_
-		local CELINA_ = Instance.new("ScreenGui")
+	function Eternal:Loader(IconId, Duration)
+		local _lib = Eternal
+		local Eternal = Instance.new("ScreenGui")
 
-		CELINA_.Name = _lib:_RandomString()
-		CELINA_.Parent = CoreGui
-		CELINA_.Enabled = true
-		CELINA_.ResetOnSpawn = false
-		CELINA_.IgnoreGuiInset = true
-		CELINA_.ZIndexBehavior = Enum.ZIndexBehavior.Global
+		Eternal.Name = _lib:_RandomString()
+		Eternal.Parent = CoreGui
+		Eternal.Enabled = true
+		Eternal.ResetOnSpawn = false
+		Eternal.IgnoreGuiInset = true
+		Eternal.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 		local Loader = Instance.new("Frame")
 		local Icon = Instance.new("ImageLabel")
 		local Vignette = Instance.new("ImageLabel")
 
 		Loader.Name = _lib:_RandomString()
-		Loader.Parent = CELINA_
+		Loader.Parent = Eternal
 		Loader.AnchorPoint = Vector2.new(0.5, 0.5)
 		Loader.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Loader.BackgroundTransparency = 1
@@ -10928,7 +10928,7 @@ local celinaHUB = (function()
 					task.wait(0.2)
 
 					task.delay(3, function()
-						CELINA_:Destroy()
+						Eternal:Destroy()
 					end)
 				end)
 
@@ -10944,16 +10944,16 @@ local celinaHUB = (function()
 		}
 	end
 
-	function CELINA_.newNotify()
-		if CELINA_.NOTIFY_CACHE then
-			return CELINA_.NOTIFY_CACHE
+	function Eternal.newNotify()
+		if Eternal.NOTIFY_CACHE then
+			return Eternal.NOTIFY_CACHE
 		end
 
 		local Notification = Instance.new("ScreenGui")
 		local NotifyContainer = Instance.new("Frame")
 		local UIListLayout = Instance.new("UIListLayout")
 
-		Notification.Name = CELINA_:_RandomString()
+		Notification.Name = Eternal:_RandomString()
 		Notification.Parent = CoreGui
 		Notification.ResetOnSpawn = false
 		Notification.ZIndexBehavior = Enum.ZIndexBehavior.Global
@@ -10968,7 +10968,7 @@ local celinaHUB = (function()
 			end
 		end)
 
-		NotifyContainer.Name = CELINA_:_RandomString()
+		NotifyContainer.Name = Eternal:_RandomString()
 		NotifyContainer.Parent = Notification
 		NotifyContainer.AnchorPoint = Vector2.new(1, 0)
 		NotifyContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -10985,10 +10985,10 @@ local celinaHUB = (function()
 
 		local LayoutREF = 0
 
-		CELINA_.NOTIFY_CACHE = {
+		Eternal.NOTIFY_CACHE = {
 			new = function(Notify): NotifyPayback
-				Notify = CELINA_.__CONFIG(Notify, {
-					Icon = CELINA_.Logo,
+				Notify = Eternal.__CONFIG(Notify, {
+					Icon = Eternal.Logo,
 					Title = "Notification",
 					Content = "Content",
 					Duration = 3,
@@ -11007,10 +11007,10 @@ local celinaHUB = (function()
 				local TimeLeft = Instance.new("Frame")
 				local UICorner_3 = Instance.new("UICorner")
 
-				BlockFrame.Name = CELINA_:_RandomString()
+				BlockFrame.Name = Eternal:_RandomString()
 				BlockFrame.Parent = NotifyContainer
 				BlockFrame.AnchorPoint = Vector2.new(1, 0)
-				BlockFrame.BackgroundColor3 = CELINA_.Colors.BGDBColor
+				BlockFrame.BackgroundColor3 = Eternal.Colors.BGDBColor
 				BlockFrame.BackgroundTransparency = 1.000
 				BlockFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				BlockFrame.BorderSizePixel = 0
@@ -11018,9 +11018,9 @@ local celinaHUB = (function()
 				BlockFrame.Size = UDim2.new(0, 200, 0, 0)
 				BlockFrame.LayoutOrder = LayoutREF
 
-				NotifyFrame.Name = CELINA_:_RandomString()
+				NotifyFrame.Name = Eternal:_RandomString()
 				NotifyFrame.Parent = BlockFrame
-				NotifyFrame.BackgroundColor3 = CELINA_.Colors.BGDBColor
+				NotifyFrame.BackgroundColor3 = Eternal.Colors.BGDBColor
 				NotifyFrame.BackgroundTransparency = 0.100
 				NotifyFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				NotifyFrame.BorderSizePixel = 0
@@ -11032,7 +11032,7 @@ local celinaHUB = (function()
 				UICorner.CornerRadius = UDim.new(0, 4)
 				UICorner.Parent = NotifyFrame
 
-				CompLogo.Name = CELINA_:_RandomString()
+				CompLogo.Name = Eternal:_RandomString()
 				CompLogo.Parent = NotifyFrame
 				CompLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				CompLogo.BackgroundTransparency = 1.000
@@ -11045,14 +11045,14 @@ local celinaHUB = (function()
 				if string.find(Notify.Icon, "cache-ck-", 1, true) then
 					CompLogo.Image = Notify.Icon
 				else
-					CompLogo.Image = CELINA_:_GetIcon(Notify.Icon)
+					CompLogo.Image = Eternal:_GetIcon(Notify.Icon)
 				end
 
-				if CELINA_.CustomHighlightMode then
-					CompLogo.ImageColor3 = CELINA_.Colors.Highlight
+				if Eternal.CustomHighlightMode then
+					CompLogo.ImageColor3 = Eternal.Colors.Highlight
 				end
 
-				Header.Name = CELINA_:_RandomString()
+				Header.Name = Eternal:_RandomString()
 				Header.Parent = NotifyFrame
 				Header.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				Header.BackgroundTransparency = 1.000
@@ -11063,11 +11063,11 @@ local celinaHUB = (function()
 				Header.ZIndex = 3
 				Header.Font = Enum.Font.GothamBold
 				Header.Text = Notify.Title
-				Header.TextColor3 = CELINA_.Colors.SwitchColor
+				Header.TextColor3 = Eternal.Colors.SwitchColor
 				Header.TextSize = 14.000
 				Header.TextXAlignment = Enum.TextXAlignment.Left
 
-				Body.Name = CELINA_:_RandomString()
+				Body.Name = Eternal:_RandomString()
 				Body.Parent = NotifyFrame
 				Body.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				Body.BackgroundTransparency = 1.000
@@ -11078,13 +11078,13 @@ local celinaHUB = (function()
 				Body.ZIndex = 3
 				Body.Font = Enum.Font.GothamMedium
 				Body.Text = Notify.Content
-				Body.TextColor3 = CELINA_.Colors.SwitchColor
+				Body.TextColor3 = Eternal.Colors.SwitchColor
 				Body.TextSize = 12.000
 				Body.TextTransparency = 0.500
 				Body.TextXAlignment = Enum.TextXAlignment.Left
 				Body.TextYAlignment = Enum.TextYAlignment.Top
 
-				TimeLeftFrame.Name = CELINA_:_RandomString()
+				TimeLeftFrame.Name = Eternal:_RandomString()
 				TimeLeftFrame.Parent = NotifyFrame
 				TimeLeftFrame.AnchorPoint = Vector2.new(0, 1)
 				TimeLeftFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -11098,9 +11098,9 @@ local celinaHUB = (function()
 				UICorner_2.CornerRadius = UDim.new(0, 4)
 				UICorner_2.Parent = TimeLeftFrame
 
-				TimeLeft.Name = CELINA_:_RandomString()
+				TimeLeft.Name = Eternal:_RandomString()
 				TimeLeft.Parent = TimeLeftFrame
-				TimeLeft.BackgroundColor3 = CELINA_.Colors.Highlight
+				TimeLeft.BackgroundColor3 = Eternal.Colors.Highlight
 				TimeLeft.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				TimeLeft.BorderSizePixel = 0
 				TimeLeft.Size = UDim2.new(0, 0, 1, 0)
@@ -11123,14 +11123,14 @@ local celinaHUB = (function()
 					local MainY = TitleScale.Y + ((Body.Text:byte() and BodyScale.Y) or 1)
 
 					if BlockFrame:GetAttribute("Already") then
-						CELINA_:_Animation(BlockFrame, _TI_030, {
+						Eternal:_Animation(BlockFrame, _TI_030, {
 							Size = UDim2.new(0, MainX + 55, 0, MainY + 35),
 						})
 					else
 						BlockFrame:SetAttribute("Already", true)
 						BlockFrame.Size = UDim2.new(0, MainX + 45, 0, 0)
 
-						CELINA_:_Animation(BlockFrame, _TI_030, {
+						Eternal:_Animation(BlockFrame, _TI_030, {
 							Size = UDim2.new(0, MainX + 55, 0, MainY + 35),
 						})
 					end
@@ -11139,13 +11139,13 @@ local celinaHUB = (function()
 				UpdateText()
 
 				local Close = function()
-					CELINA_:_Animation(NotifyFrame, TweenInfo.new(0.65, Enum.EasingStyle.Quint), {
+					Eternal:_Animation(NotifyFrame, TweenInfo.new(0.65, Enum.EasingStyle.Quint), {
 						Position = UDim2.new(1, 200, 0, 0),
 					})
 
 					task.wait(0.3)
 
-					CELINA_:_Animation(BlockFrame, _TI_030, {
+					Eternal:_Animation(BlockFrame, _TI_030, {
 						Size = UDim2.new(1, 0, 0, 0),
 					})
 
@@ -11154,7 +11154,7 @@ local celinaHUB = (function()
 				end
 
 				local Show = function()
-					CELINA_:_Animation(NotifyFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+					Eternal:_Animation(NotifyFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
 						Position = UDim2.new(0, 0, 0, 0),
 					})
 				end
@@ -11174,7 +11174,7 @@ local celinaHUB = (function()
 				end)
 
 				if typeof(Notify.Duration) == "number" and Notify.Duration ~= math.huge then
-					CELINA_:_Animation(TimeLeft, TweenInfo.new(Notify.Duration + 0.2, Enum.EasingStyle.Linear), {
+					Eternal:_Animation(TimeLeft, TweenInfo.new(Notify.Duration + 0.2, Enum.EasingStyle.Linear), {
 						Size = UDim2.new(1, 0, 1, 0),
 					})
 
@@ -11210,7 +11210,7 @@ local celinaHUB = (function()
 							new = (new / 100)
 						end
 
-						CELINA_:_Animation(
+						Eternal:_Animation(
 							TimeLeft,
 							TweenInfo.new(Time or 0.85, (Time and Enum.EasingStyle.Linear) or Enum.EasingStyle.Quint),
 							{
@@ -11226,12 +11226,12 @@ local celinaHUB = (function()
 			end,
 		}
 
-		return CELINA_.NOTIFY_CACHE
+		return Eternal.NOTIFY_CACHE
 	end
 
-	CELINA_.NilFolder.Name = "Nil-Instances"
+	Eternal.NilFolder.Name = "Nil-Instances"
 
-	return CELINA_
+	return Eternal
 end)()
 local function Setup(config)
 	config = config or {}
@@ -11245,7 +11245,7 @@ local function Setup(config)
 	local LoaderDuration = config.LoaderDuration or 2
 	local ConfigDir = config.ConfigDir or "celinaHUB"
 	local ConfigName = config.ConfigName or "celina-Configs"
-	local WindowName = config.Name or ('<font size="22">CELINA_</font>\n<font size="10">VERSION ' .. Version .. "</font>")
+	local WindowName = config.Name or ('<font size="22">Eternal</font>\n<font size="10">VERSION ' .. Version .. "</font>")
 
 	local Notifier = celinaHUB.newNotify()
 	local ConfigManager = celinaHUB:ConfigManager({ Directory = ConfigDir, Config = ConfigName })
@@ -11253,7 +11253,7 @@ local function Setup(config)
 	celinaHUB.Colors.Highlight = Color3.fromRGB(220, 60, 60)
 	celinaHUB.Colors.Toggle = Color3.fromRGB(220, 60, 60)
 
-	local _themeFile = ConfigDir .. "/celina_theme.txt"
+	local _themeFile = ConfigDir .. "/Eternaltheme.txt"
 	local _savedTheme = nil
 	pcall(function()
 		if isfile and isfile(_themeFile) then
