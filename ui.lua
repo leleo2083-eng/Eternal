@@ -183,7 +183,7 @@ local celinaHUB = (function()
 	end
 	local Eternal = {
 		Version = "x.x",
-		Logo = "https://i.ibb.co/bjLdp5Yq/avatar-1200x1200.jpg",
+		Logo = "https://i.ibb.co/rRYjPm4f/avatar-1200x1200.jpg",
 		Windows = {},
 		Scale = {
 			Window = UDim2.new(0, 485, 0, 565),
